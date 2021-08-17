@@ -98,7 +98,7 @@ all:	dirs \
 
 .PHONY: build
 build:
-	$(CXX) -O3 -Wall -shared -std=c++11 -fPIC $(python3-config --includes) -Iextern/pybind11/include example.cpp -o $(BUILDDIR)/example$(python3-config --extension-suffix)
+	$(CXX) -O3 -Wall -shared -std=c++11 -fPIC $(shell python3-config --includes) -Iextern/pybind11/include example.cpp -o $(BUILDDIR)/example$(shell python3-config --extension-suffix)
 
 .PHONY execs:
 execs:
