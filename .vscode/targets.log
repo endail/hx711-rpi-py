@@ -1,0 +1,390 @@
+make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.3
+# Built for Windows32
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+# Make data base, printed on Thu Aug 19 23:16:55 2021
+
+# Variables
+
+# environment
+SYSTEMDRIVE = C:
+# environment
+LC_ALL = C
+# makefile (from 'Makefile', line 73)
+AR = $(RPI_TOOLCHAIN)/bin/arm-linux-gnueabihf-ar.exe
+# makefile (from 'Makefile', line 55)
+IS_WIN := 1
+# environment
+USERPROFILE = C:\Users\drob
+# makefile (from 'Makefile', line 28)
+BINDIR := bin
+# environment
+LOCALAPPDATA = C:\Users\drob\AppData\Local
+# environment
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-041e2e1c-b3bf-4d24-bff0-fd210b3cc6b0-sock
+# environment
+VSCODE_CWD = H:\Program Files\Microsoft VS Code
+# environment
+CARBON_MEM_DISABLE = 1
+# environment
+CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
+# environment
+SYSTEMROOT = C:\WINDOWS
+# makefile (from 'Makefile', line 30)
+LIBS := -llgpio -pthread
+# environment
+PROCESSOR_LEVEL = 6
+# environment
+PSMODULEPATH = C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+# default
+MAKE_COMMAND := C:/ProgramData/chocolatey/lib/make/tools/install/bin/make.exe
+# automatic
+@D = $(patsubst %/,%,$(patsubst %\,%,$(dir $@)))
+# environment
+VSCODE_BROWSER_CODE_LOADING = bypassHeatCheck
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# automatic
+%D = $(patsubst %/,%,$(patsubst %\,%,$(dir $%)))
+# automatic
+^D = $(patsubst %/,%,$(patsubst %\,%,$(dir $^)))
+# environment
+VSCODE_LOG_STACK = false
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = C:\Users\drob\AppData\Roaming\Code\CachedData\379476f0e13988d90fab105c5c19e7abc8b1dea8
+# environment
+LANG = C
+# default
+.LOADED := 
+# environment
+TMP = F:\Temp
+# default
+.INCLUDE_DIRS = .
+# environment
+PROCESSOR_ARCHITEW6432 = AMD64
+# makefile
+MAKEFLAGS = pqrR
+# environment
+ONEDRIVE = C:\Users\drob\OneDrive
+# makefile
+CURDIR := h:/Daniel/My Documents/GitHub/hx711-rpi-py
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
+*D = $(patsubst %/,%,$(patsubst %\,%,$(dir $*)))
+# environment
+PROGRAMFILES = C:\Program Files (x86)
+# environment
+MFLAGS = -pqrR
+# default
+.SHELLFLAGS := -c
+# environment
+COMMONPROGRAMW6432 = C:\Program Files\Common Files
+# automatic
++D = $(patsubst %/,%,$(patsubst %\,%,$(dir $+)))
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST := Makefile
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+VSCODE_PID = 8076
+# automatic
+?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
+# automatic
+*F = $(notdir $*)
+# automatic
+<D = $(patsubst %/,%,$(patsubst %\,%,$(dir $<)))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-gb","availableLanguages":{},"_languagePackSupport":true}
+# environment
+JD2_HOME = H:\Program Files\JDownloader 2.0
+# default
+MAKE_HOST := Windows32
+# environment
+PROGRAMDATA = C:\ProgramData
+# default
+SHELL := sh.exe
+# environment
+HOMEPATH = \Users\drob
+# default
+MAKECMDGOALS := all
+# environment
+DRIVERDATA = C:\Windows\System32\Drivers\DriverData
+# environment
+COMSPEC = C:\WINDOWS\system32\cmd.exe
+# environment
+WINDIR = C:\WINDOWS
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+PATH = H:\Program Files\Python39\Scripts\;H:\Program Files\Python39\;H:\Program Files\Python38\Scripts\;H:\Program Files\Python38\;C:\Windows\System32;C:\Windows;C:\Windows\System32\wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;H:\Program Files\OpenSSL-Win64\bin;H:\lib\cygwin64\bin;H:\Program Files\Microsoft Network Monitor 3\;H:\Program Files (x86)\Gpg4win\..\GnuPG\bin;C:\ProgramData\chocolatey\bin;H:\Program Files\nodejs\;H:\Program Files\PuTTY\;H:\Program Files\Git\cmd;C:\Users\drob\AppData\Local\Microsoft\WindowsApps;H:\Program Files\Microsoft VS Code\bin;H:\lib\utils;H:\SysGCC\bin;H:\Program Files (x86)\GitHub CLI\;C:\Users\drob\AppData\Local\GitHubDesktop\bin;C:\Users\drob\AppData\Roaming\npm
+# environment
+COMPUTERNAME = WASP
+# default
+MAKEFILES := 
+# automatic
+^F = $(notdir $^)
+# environment
+PROMPT = $P$G
+# environment
+CHOCOLATEYLASTPATHUPDATE = 132696163004806965
+# makefile (from 'Makefile', line 51)
+PREFIX := /usr/local
+# environment
+LOGONSERVER = \\WASP
+# environment
+CLIENTNAME = DRAGONFLY
+# environment
+VSCODE_LOG_NATIVE = false
+# environment
+USERNAME = Daniel
+# environment
+COMMONPROGRAMFILES = C:\Program Files (x86)\Common Files
+# automatic
+?F = $(notdir $?)
+# makefile (from 'Makefile', line 31)
+INC := -I include
+# environment
+PROGRAMW6432 = C:\Program Files
+# environment
+PATHEXT = .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW
+# automatic
++F = $(notdir $+)
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+USERDOMAIN = WASP
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+OS = Windows_NT
+# makefile (from 'Makefile', line 29)
+SRCEXT := cpp
+# makefile
+.DEFAULT_GOAL := all
+# default
+MAKE_VERSION := 4.3
+# environment
+PROGRAMFILES(X86) = C:\Program Files (x86)
+# environment
+USERDOMAIN_ROAMINGPROFILE = WASP
+# environment
+NUMBER_OF_PROCESSORS = 8
+# environment
+PUBLIC = C:\Users\Public
+# environment
+ASL.LOG = Destination=file
+# environment
+RPI_TOOLCHAIN = H:\SysGCC\raspberry
+# environment
+APPDATA = C:\Users\drob\AppData\Roaming
+# makefile (from 'Makefile', line 32)
+CFLAGS := -O2 -fomit-frame-pointer -pipe -Wall -Wfatal-errors -Werror=format-security -Wl,-z,relro -Wl,-z,now -Wl,-z,defs -Wl,--hash-style=gnu -Wl,--as-needed -D_FORTIFY_SOURCE=2 -fstack-clash-protection -DNDEBUG=1
+# environment
+HOMEDRIVE = C:
+# environment
+PROCESSOR_ARCHITECTURE = x86
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/services/extensions/node/extensionHostProcess
+# environment
+COMMONPROGRAMFILES(X86) = C:\Program Files (x86)\Common Files
+# makefile (from 'Makefile', line 25)
+INCDIR := include
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+TEMP = F:\Temp
+# environment
+VSCODE_IPC_HOOK = \\.\pipe\de5a967a0042eb0f62a0bb3d1b87a727-1.59.0-main-sock
+# makefile (from 'Makefile', line 26)
+SRCDIR := src
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# default
+SUFFIXES := 
+# environment
+ALLUSERSPROFILE = C:\ProgramData
+# environment
+SESSIONNAME = RDP-Tcp#9
+# makefile (from 'Makefile', line 89)
+CXXFLAGS := -std=c++11 -fexceptions -O2 -fomit-frame-pointer -pipe -Wall -Wfatal-errors -Werror=format-security -Wl,-z,relro -Wl,-z,now -Wl,-z,defs -Wl,--hash-style=gnu -Wl,--as-needed -D_FORTIFY_SOURCE=2 -fstack-clash-protection -DNDEBUG=1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
+# environment
+PROCESSOR_REVISION = 3a09
+# makefile (from 'Makefile', line 72)
+CXX = $(RPI_TOOLCHAIN)/bin/arm-linux-gnueabihf-g++.exe
+# makefile (from 'Makefile', line 27)
+BUILDDIR := build
+# environment
+PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+# variable set hash-table stats:
+# Load=112/1024=11%, Rehash=0, Collisions=9/169=5%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# src: could not be stat'd.
+# . (key h:/Daniel/My Documents/GitHub/hx711-rpi-py, mtime 1629378999): 13 files, no impossibilities.
+
+# 13 files, no impossibilities in 2 directories.
+
+# Implicit Rules
+
+build/%.o: src/%.cpp
+#  recipe to execute (from 'Makefile', line 128):
+	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
+
+build/static/%.o: src/%.cpp
+#  recipe to execute (from 'Makefile', line 131):
+	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
+
+build/shared/%.o: src/%.cpp
+#  recipe to execute (from 'Makefile', line 134):
+	$(CXX) $(CXXFLAGS) -fPIC $(INC) -c -o $@ $<
+
+# 3 implicit rules, 0 (0.0%) terminal.
+# Files
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2021-08-1 
+9 23:16:48
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+build/shared/libhx711.so:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+dirs:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := dirs
+# automatic
+# * := 
+# automatic
+# < := 
+# automatic
+# + := 
+# automatic
+# % := 
+# automatic
+# ^ := 
+# automatic
+# ? := 
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=11/15=73%
+#  recipe to execute (from 'Makefile', line 119):
+	if not exist $(BINDIR) mkdir $(BINDIR)
+	if not exist $(BUILDDIR) mkdir $(BUILDDIR)
+
+uninstall:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 109):
+	del /S /Q $(BUILDDIR)\*
+	del /S /Q $(BINDIR)\*
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+all: dirs build
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
+
+build:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 101):
+	$(CXX) -O3 -Wall -shared -std=c++11 -fPIC $(shell python3-config --includes) -Iextern/pybind11/include bindings.cpp -o $(BUILDDIR)/HX711$(shell python3-config --extension-suffix) -lhx711 -llgpio
+
+install: build/shared/libhx711.so
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+.PHONY: all build clean dirs install uninstall
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+execs:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# files hash-table stats:
+# Load=12/1024=1%, Rehash=0, Collisions=0/45=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 28 / storage = 250 B / avg = 8 B
+# current buf: size = 8174 B / used = 250 B / count = 28 / avg = 8 B
+
+# strcache performance: lookups = 67 / hit rate = 58%
+# hash-table stats:
+# Load=28/8192=0%, Rehash=0, Collisions=0/67=0%
+# Finished Make data base on Thu 
+ Aug 19 23:16:55 2021
+
+ 

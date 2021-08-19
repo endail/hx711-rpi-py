@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdint>
 #include <chrono>
+#include <vector>
 
 namespace py = pybind11;
 using namespace HX711;
@@ -48,7 +49,7 @@ PYBIND11_MODULE(HX711, m) {
         .def("__float__", static_cast<double (Mass::*)() const>(&Mass::operator double))
         .def("__str__", static_cast<std::string (Mass::*)() const>(&Mass::toString))
         .def("__repr__", static_cast<std::string (Mass::*)() const>(&Mass::toString))
-        .def("assign", &Mass::operator=)
+        //.def("assign", &Mass::operator=)
     ;
 
 
@@ -70,7 +71,7 @@ PYBIND11_MODULE(HX711, m) {
          * which is protected
          */
         .def("__int__", static_cast<INTERNAL_VALUE_TYPE (Value::*)() const>(&Value::operator INTERNAL_VALUE_TYPE))
-        .def("assign", &Value::operator=)
+        //.def("assign", &Value::operator=)
 
         .def(py::init<const INTERNAL_VALUE_TYPE>())
         .def(py::init<>())
@@ -121,7 +122,6 @@ PYBIND11_MODULE(HX711, m) {
     py::enum_<HX711::Format>(m, "Format")
         .value("MSB", HX711::Format::MSB)
         .value("LSB", HX711::Format::LSB);
-
 
 
     /**
@@ -222,6 +222,13 @@ PYBIND11_MODULE(HX711, m) {
             const HX711::Rate>())
 
         //virtual getValues functions here
+        .def(
+            "getValues",
+            static_cast<std::vector<Value> (SimpleHX711::*)(const std::chrono::nanoseconds)>(&SimpleHX711::getValues))
+
+        .def(
+            "getValues",
+            static_cast<std::vector<Value> (SimpleHX711::*)(const std::size_t)>(&SimpleHX711::getValues))
 
     ;
 
