@@ -14,9 +14,27 @@ PYBIND11_MODULE(HX711, m) {
     m.doc() = "HX711 namespace";
 
     /**
+     * HX711.GpioException
+     */
+    py::class_<GpioException>(m, "GpioException")
+        .def(py::init<const char*>());
+
+    /**
+     * HX711.IntegrityException
+     */
+    py::class_<IntegrityException>(m, "IntegrityException")
+        .def(py::init<const char*>());
+
+    /**
+     * HX711.TimeoutException
+     */
+    py::class_<TimeoutException>(m, "TimeoutException")
+        .def(py::init<const char*>());
+
+
+    /**
      * HX711.Mass
      */
-
     py::class_<Mass> mass_Type(m, "Mass");
 
     mass_Type.def_static("convert", &Mass::convert);
@@ -53,11 +71,9 @@ PYBIND11_MODULE(HX711, m) {
     ;
 
 
-
     /**
      * HX711.Value
      */
-
     typedef std::int32_t INTERNAL_VALUE_TYPE;
 
     py::class_<Value> value_Type(m, "Value");
@@ -89,7 +105,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Channel
      */
-
     py::enum_<HX711::Channel>(m, "Channel")
         .value("A", HX711::Channel::A)
         .value("B", HX711::Channel::B);
@@ -98,7 +113,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Gain
      */
-
     py::enum_<HX711::Gain>(m, "Gain")
         .value("GAIN_128", HX711::Gain::GAIN_128)
         .value("GAIN_32", HX711::Gain::GAIN_32)
@@ -108,7 +122,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Rate
      */
-
     py::enum_<HX711::Rate>(m, "Rate")
         .value("HZ_10", HX711::Rate::HZ_10)
         .value("HZ_80", HX711::Rate::HZ_80)
@@ -118,7 +131,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Format
      */
-
     py::enum_<HX711::Format>(m, "Format")
         .value("MSB", HX711::Format::MSB)
         .value("LSB", HX711::Format::LSB);
@@ -127,7 +139,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.HX711
      */
-
     py::class_<HX711::HX711> hx711_Type(m, "HX711");
 
     hx711_Type
@@ -150,7 +161,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.StrategyType
      */
-
     py::enum_<HX711::StrategyType>(m, "StrategyType")
         .value("Samples", StrategyType::Samples)
         .value("Time", StrategyType::Time);
@@ -159,7 +169,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.ReadType
      */
-
     py::enum_<HX711::ReadType>(m, "ReadType")
         .value("Median", ReadType::Median)
         .value("Average",ReadType::Average);
@@ -168,7 +177,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Options
      */
-
     py::class_<HX711::Options> options_Type(m, "Options");
     
     options_Type
@@ -185,7 +193,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.AbstractScale
      */
-
     py::class_<AbstractScale> abstractScale_Type(m, "AbstractScale");
 
     abstractScale_Type
@@ -210,7 +217,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.SimpleHX711
      */
-
     py::class_<SimpleHX711, HX711::HX711, AbstractScale> simpleHX711_Type(m, "SimpleHX711");
 
     simpleHX711_Type
@@ -221,7 +227,6 @@ PYBIND11_MODULE(HX711, m) {
             const HX711::Value,
             const HX711::Rate>())
 
-        //virtual getValues functions here
         .def(
             "getValues",
             static_cast<std::vector<Value> (SimpleHX711::*)(const std::chrono::nanoseconds)>(&SimpleHX711::getValues))
@@ -229,8 +234,29 @@ PYBIND11_MODULE(HX711, m) {
         .def(
             "getValues",
             static_cast<std::vector<Value> (SimpleHX711::*)(const std::size_t)>(&SimpleHX711::getValues))
-
     ;
 
+
+    /**
+     * HX711.AdvancedHX711
+     */
+    py::class_<AdvancedHX711, HX711::HX711, AbstractScale> advancedHX711_Type(m, "AdvancedHX711");
+
+    advancedHX711_Type
+        .def(py::init<
+            const int,
+            const int,
+            const HX711::Value,
+            const HX711::Value,
+            const HX711::Rate>())
+
+        .def(
+            "getValues",
+            static_cast<std::vector<Value> (AdvancedHX711::*)(const std::chrono::nanoseconds)>(&AdvancedHX711::getValues))
+
+        .def(
+            "getValues",
+            static_cast<std::vector<Value> (AdvancedHX711::*)(const std::size_t)>(&AdvancedHX711::getValues))
+    ;
 
 }

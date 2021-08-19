@@ -27,9 +27,11 @@ SRCDIR := src
 BUILDDIR := build
 BINDIR := bin
 SRCEXT := cpp
-LIBS := -llgpio -pthread
+LIBS := -hx711 -llgpio
 INC := -I $(INCDIR)
-CFLAGS :=	-O2 \
+CFLAGS :=	-O3 \
+			-shared \
+			-fPIC \
 			-fomit-frame-pointer \
 			-pipe \
 			-Wall \
@@ -42,7 +44,10 @@ CFLAGS :=	-O2 \
 			-Wl,--as-needed \
 			-D_FORTIFY_SOURCE=2 \
 			-fstack-clash-protection \
-			-DNDEBUG=1
+			-DNDEBUG=1 \
+			$(shell python3-config --includes) \
+			-Iextern/pybind11/include
+PYMODULE_FILENAME := HX711$(shell python3-config --extension-suffix)
 
 ########################################################################
 
@@ -98,7 +103,11 @@ all:	dirs \
 
 .PHONY: build
 build:
-	$(CXX) -O3 -Wall -shared -std=c++11 -fPIC $(shell python3-config --includes) -Iextern/pybind11/include bindings.cpp -o $(BUILDDIR)/HX711$(shell python3-config --extension-suffix) -lhx711 -llgpio
+	$(CXX) \
+		$(CXXFLAGS) \
+		$(SRCDIR)/bindings.$(SRCEXT) \
+		-o $(BUILDDIR)/$(PYMODULE_FILENAME) \
+		$(LIBS)
 
 .PHONY execs:
 execs:
@@ -122,16 +131,6 @@ else
 	mkdir -p $(BINDIR)
 	mkdir -p $(BUILDDIR)
 endif
-
-
-$(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
-	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
-
-$(BUILDDIR)/static/%.o: $(SRCDIR)/%.$(SRCEXT)
-	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
-
-$(BUILDDIR)/shared/%.o: $(SRCDIR)/%.$(SRCEXT)
-	$(CXX) $(CXXFLAGS) -fPIC $(INC) -c -o $@ $<
 
 
 .PHONY: install
