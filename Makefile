@@ -27,24 +27,12 @@ SRCDIR := src
 BUILDDIR := build
 BINDIR := bin
 SRCEXT := cpp
-LIBS := -hx711 -llgpio
+LIBS := -lhx711 -llgpio
 INC := -I $(INCDIR)
 CFLAGS :=	-O3 \
 			-shared \
 			-fPIC \
-			-fomit-frame-pointer \
-			-pipe \
 			-Wall \
-			-Wfatal-errors \
-			-Werror=format-security \
-			-Wl,-z,relro \
-			-Wl,-z,now \
-			-Wl,-z,defs	\
-			-Wl,--hash-style=gnu \
-			-Wl,--as-needed \
-			-D_FORTIFY_SOURCE=2 \
-			-fstack-clash-protection \
-			-DNDEBUG=1 \
 			$(shell python3-config --includes) \
 			-Iextern/pybind11/include
 PYMODULE_FILENAME := HX711$(shell python3-config --extension-suffix)
@@ -80,10 +68,10 @@ endif
 
 ifeq ($(IS_PI),1)
 # only include these flags on rpi
-	CFLAGS :=	-march=native \
-				-mfpu=vfp \
-				-mfloat-abi=hard \
-				$(CFLAGS)
+#	CFLAGS :=	-march=native \
+#				-mfpu=vfp \
+#				-mfloat-abi=hard \
+#				$(CFLAGS)
 endif
 
 ifeq ($(IS_GHA),1)
