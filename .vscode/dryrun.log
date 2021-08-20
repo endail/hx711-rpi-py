@@ -1,16 +1,19 @@
-make.exe --dry-run --always-make --keep-going --print-directory
+make.exe --dry-run --keep-going --print-directory
 make: Entering directory 'h:/Daniel/My Documents/GitHub/hx711-rpi-py'
-if not exist bin mkdir bin
-if not exist build mkdir build
-H:\SysGCC\raspberry/bin/arm-linux-gnueabihf-g++.exe \
-	-std=c++11 -fexceptions -O3 -shared -fPIC -Wall  -Iextern/pybind11/include \
-	src/bindings.cpp \
-	-o build/HX711 \
-	-lhx711 -llgpio
-make: Leaving directory 'h:/Daniel/My Documents/GitHub/hx711-rpi-py'
  
 process_begin: CreateProcess(NULL, python3-config --includes, ...) failed.
-Makefile:32: pipe: No error
+Makefile:34: pipe: No error
+ 
 process_begin: CreateProcess(NULL, python3-config --extension-suffix, ...) failed.
-Makefile:38: pipe: No error
+Makefile:53: pipe: No error
+ 
+mkdir -p bin
+mkdir -p build
+ 
+g++ \
+	-std=c++11 -fexceptions -O2 -fvisibility=hidden -shared -fPIC -fomit-frame-pointer -pipe -Wall -Wfatal-errors -Werror=format-security -Wl,-z,relro -Wl,-z,now -Wl,--hash-style=gnu -Wl,--as-needed -D_FORTIFY_SOURCE=2 -fstack-clash-protection -DNDEBUG=1  -Iextern/pybind11/include \
+	src/bindings.cpp \
+	-o bin/HX711 \
+	-lhx711 -llgpio
+make: Leaving directory 'h:/Daniel/My Documents/GitHub/hx711-rpi-py'
  

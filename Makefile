@@ -20,6 +20,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+# using CFLAG -Wl,-z,defs results in linker error (undefined refs)
+
 CXX := g++
 AR := ar
 INCDIR := include
@@ -29,12 +31,25 @@ BINDIR := bin
 SRCEXT := cpp
 LIBS := -lhx711 -llgpio
 INC := -I $(INCDIR)
-CFLAGS :=	-O3 \
+CFLAGS :=	-O2 \
+			-fvisibility=hidden \
 			-shared \
 			-fPIC \
+			-fomit-frame-pointer \
+			-pipe \
 			-Wall \
+			-Wfatal-errors \
+			-Werror=format-security \
+			-Wl,-z,relro \
+			-Wl,-z,now \
+			-Wl,--hash-style=gnu \
+			-Wl,--as-needed \
+			-D_FORTIFY_SOURCE=2 \
+			-fstack-clash-protection \
+			-DNDEBUG=1 \
 			$(shell python3-config --includes) \
 			-Iextern/pybind11/include
+
 PYMODULE_FILENAME := HX711$(shell python3-config --extension-suffix)
 
 ########################################################################
@@ -58,25 +73,12 @@ endif
 
 ########################################################################
 
-ifeq ($(IS_WIN),1)
-# overwrite binaries for dev
-# NOTE: toolchain available here: https://gnutoolchains.com/raspberry/
-# set RPI_TOOLCHAIN environment variable to directory of toolchain
-	CXX = $(RPI_TOOLCHAIN)/bin/arm-linux-gnueabihf-g++.exe
-	AR = $(RPI_TOOLCHAIN)/bin/arm-linux-gnueabihf-ar.exe
-endif
-
 ifeq ($(IS_PI),1)
 # only include these flags on rpi
-#	CFLAGS :=	-march=native \
-#				-mfpu=vfp \
-#				-mfloat-abi=hard \
-#				$(CFLAGS)
-endif
-
-ifeq ($(IS_GHA),1)
-# gha needs these additional libs
-	LIBS := $(LIBS) -lrt -lcrypt -pthread
+	CFLAGS :=	-march=native \
+				-mfpu=vfp \
+				-mfloat-abi=hard \
+				$(CFLAGS)
 endif
 
 CXXFLAGS :=		-std=c++11 \
@@ -94,43 +96,26 @@ build:
 	$(CXX) \
 		$(CXXFLAGS) \
 		$(SRCDIR)/bindings.$(SRCEXT) \
-		-o $(BUILDDIR)/$(PYMODULE_FILENAME) \
+		-o $(BINDIR)/$(PYMODULE_FILENAME) \
 		$(LIBS)
-
-.PHONY execs:
-execs:
 
 .PHONY: clean
 clean:
-ifeq ($(IS_WIN),1)
-	del /S /Q $(BUILDDIR)\*
-	del /S /Q $(BINDIR)\*
-else
 	rm -r $(BUILDDIR)/*
 	rm -r $(BINDIR)/*
-endif
 
 .PHONY: dirs
 dirs:
-ifeq ($(IS_WIN),1)
-	if not exist $(BINDIR) mkdir $(BINDIR)
-	if not exist $(BUILDDIR) mkdir $(BUILDDIR)
-else
 	mkdir -p $(BINDIR)
 	mkdir -p $(BUILDDIR)
-endif
-
 
 .PHONY: install
-install: $(BUILDDIR)/shared/libhx711.so
-#	install -d $(DESTDIR)$(PREFIX)/lib/
-#	install -m 644 $(BUILDDIR)/shared/libhx711.so $(DESTDIR)$(PREFIX)/lib/
-#	install -d $(DESTDIR)$(PREFIX)/include/hx711
-#	install -m 644 $(INCDIR)/*.h $(DESTDIR)$(PREFIX)/include/hx711
+install: $(BINDIR)/$(PYMODULE_FILENAME)
+	install -d $(DESTDIR)$(PREFIX)/lib/
+	install -m 644 $(BUILDDIR)/$(PYMODULE_FILENAME) $(DESTDIR)$(PREFIX)/lib/
 #	ldconfig $(DESTDIR)$(PREFIX)/lib
 
 .PHONY: uninstall
 uninstall:
-#	rm -f $(DESTDIR)$(PREFIX)/lib/libhx711.*
-#	rm -rf $(DESTDIR)$(PREFIX)/include/hx711
-#	ldconfig $(DESTDIR)$(PREFIX)/lib
+	rm -f $(DESTDIR)$(PREFIX)/lib/HX711.*
+	ldconfig $(DESTDIR)$(PREFIX)/lib
