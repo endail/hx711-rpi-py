@@ -1,4 +1,10 @@
 make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --question
+process_begin: CreateProcess(NULL, python3-config --includes, ...) failed.
+Makefile:32: pipe: No error
+ 
+process_begin: CreateProcess(NULL, python3-config --extension-suffix, ...) failed.
+Makefile:38: pipe: No error
+ 
 # GNU Make 4.3
 # Built for Windows32
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -7,7 +13,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # There is NO WARRANTY, to the extent permitted by law.
  
 
-# Make data base, printed on Thu Aug 19 23:16:55 2021
+# Make data base, printed on Fri Aug 20 20:54:57 2021
 
 # Variables
 
@@ -15,9 +21,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 SYSTEMDRIVE = C:
 # environment
 LC_ALL = C
-# makefile (from 'Makefile', line 73)
+# makefile (from 'Makefile', line 66)
 AR = $(RPI_TOOLCHAIN)/bin/arm-linux-gnueabihf-ar.exe
-# makefile (from 'Makefile', line 55)
+# makefile (from 'Makefile', line 48)
 IS_WIN := 1
 # environment
 USERPROFILE = C:\Users\drob
@@ -26,7 +32,7 @@ BINDIR := bin
 # environment
 LOCALAPPDATA = C:\Users\drob\AppData\Local
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-041e2e1c-b3bf-4d24-bff0-fd210b3cc6b0-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-d9d7d550-3ed1-430e-b1c3-8923194e0d7a-sock
 # environment
 VSCODE_CWD = H:\Program Files\Microsoft VS Code
 # environment
@@ -36,7 +42,7 @@ CHOCOLATEYINSTALL = C:\ProgramData\chocolatey
 # environment
 SYSTEMROOT = C:\WINDOWS
 # makefile (from 'Makefile', line 30)
-LIBS := -llgpio -pthread
+LIBS := -lhx711 -llgpio
 # environment
 PROCESSOR_LEVEL = 6
 # environment
@@ -60,7 +66,7 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\drob\AppData\Roaming\Code\CachedData\379476f0e13988d90fab105c5c19e7abc8b1dea8
+VSCODE_CODE_CACHE_PATH = C:\Users\drob\AppData\Roaming\Code\CachedData\3866c3553be8b268c8a7f8c0482c0c0177aa8bfa
 # environment
 LANG = C
 # default
@@ -100,7 +106,7 @@ MAKEFILE_LIST := Makefile
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 8076
+VSCODE_PID = 17800
 # automatic
 ?D = $(patsubst %/,%,$(patsubst %\,%,$(dir $?)))
 # automatic
@@ -143,7 +149,7 @@ MAKEFILES :=
 PROMPT = $P$G
 # environment
 CHOCOLATEYLASTPATHUPDATE = 132696163004806965
-# makefile (from 'Makefile', line 51)
+# makefile (from 'Makefile', line 44)
 PREFIX := /usr/local
 # environment
 LOGONSERVER = \\WASP
@@ -179,6 +185,8 @@ SRCEXT := cpp
 .DEFAULT_GOAL := all
 # default
 MAKE_VERSION := 4.3
+# 'override' directive
+.SHELLSTATUS := 127
 # environment
 PROGRAMFILES(X86) = C:\Program Files (x86)
 # environment
@@ -194,7 +202,7 @@ RPI_TOOLCHAIN = H:\SysGCC\raspberry
 # environment
 APPDATA = C:\Users\drob\AppData\Roaming
 # makefile (from 'Makefile', line 32)
-CFLAGS := -O2 -fomit-frame-pointer -pipe -Wall -Wfatal-errors -Werror=format-security -Wl,-z,relro -Wl,-z,now -Wl,-z,defs -Wl,--hash-style=gnu -Wl,--as-needed -D_FORTIFY_SOURCE=2 -fstack-clash-protection -DNDEBUG=1
+CFLAGS := -O3 -shared -fPIC -Wall  -Iextern/pybind11/include
 # environment
 HOMEDRIVE = C:
 # environment
@@ -210,7 +218,7 @@ ELECTRON_RUN_AS_NODE = 1
 # environment
 TEMP = F:\Temp
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\de5a967a0042eb0f62a0bb3d1b87a727-1.59.0-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\de5a967a0042eb0f62a0bb3d1b87a727-1.59.1-main-sock
 # makefile (from 'Makefile', line 26)
 SRCDIR := src
 # default
@@ -223,20 +231,22 @@ SUFFIXES :=
 ALLUSERSPROFILE = C:\ProgramData
 # environment
 SESSIONNAME = RDP-Tcp#9
-# makefile (from 'Makefile', line 89)
-CXXFLAGS := -std=c++11 -fexceptions -O2 -fomit-frame-pointer -pipe -Wall -Wfatal-errors -Werror=format-security -Wl,-z,relro -Wl,-z,now -Wl,-z,defs -Wl,--hash-style=gnu -Wl,--as-needed -D_FORTIFY_SOURCE=2 -fstack-clash-protection -DNDEBUG=1
+# makefile (from 'Makefile', line 82)
+CXXFLAGS := -std=c++11 -fexceptions -O3 -shared -fPIC -Wall  -Iextern/pybind11/include
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync load
 # environment
 PROCESSOR_REVISION = 3a09
-# makefile (from 'Makefile', line 72)
+# makefile (from 'Makefile', line 65)
 CXX = $(RPI_TOOLCHAIN)/bin/arm-linux-gnueabihf-g++.exe
 # makefile (from 'Makefile', line 27)
 BUILDDIR := build
+# makefile (from 'Makefile', line 38)
+PYMODULE_FILENAME := HX711
 # environment
 PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
 # variable set hash-table stats:
-# Load=112/1024=11%, Rehash=0, Collisions=9/169=5%
+# Load=114/1024=11%, Rehash=0, Collisions=9/171=5%
 
 # Pattern-specific Variable Values
 
@@ -244,38 +254,26 @@ PROCESSOR_IDENTIFIER = Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
 
 # Directories
 
-# src: could not be stat'd.
-# . (key h:/Daniel/My Documents/GitHub/hx711-rpi-py, mtime 1629378999): 13 files, no impossibilities.
+# . (key h:/Daniel/My Documents/GitHub/hx711-rpi-py, mtime 1629380238): 14 files, no impossibilities.
 
-# 13 files, no impossibilities in 2 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
-build/%.o: src/%.cpp
-#  recipe to execute (from 'Makefile', line 128):
-	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
+# No implicit rules.
 
-build/static/%.o: src/%.cpp
-#  recipe to execute (from 'Makefile', line 131):
-	$(CXX) $(CXXFLAGS) $(INC) -c -o $@ $<
-
-build/shared/%.o: src/%.cpp
-#  recipe to execute (from 'Makefile', line 134):
-	$(CXX) $(CXXFLAGS) -fPIC $(INC) -c -o $@ $<
-
-# 3 implicit rules, 0 (0.0%) terminal.
 # Files
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-08-1 
-9 23:16:48
+#  Last modified 2021-08-20 00:17:00
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-build/shared/libhx711.so:
+build/s 
+hared/libhx711.so:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -305,7 +303,7 @@ dirs:
 # | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=11/15=73%
-#  recipe to execute (from 'Makefile', line 119):
+#  recipe to execute (from 'Makefile', line 116):
 	if not exist $(BINDIR) mkdir $(BINDIR)
 	if not exist $(BUILDDIR) mkdir $(BUILDDIR)
 
@@ -320,7 +318,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 109):
+#  recipe to execute (from 'Makefile', line 106):
 	del /S /Q $(BUILDDIR)\*
 	del /S /Q $(BINDIR)\*
 
@@ -345,8 +343,12 @@ build:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 101):
-	$(CXX) -O3 -Wall -shared -std=c++11 -fPIC $(shell python3-config --includes) -Iextern/pybind11/include bindings.cpp -o $(BUILDDIR)/HX711$(shell python3-config --extension-suffix) -lhx711 -llgpio
+#  recipe to execute (from 'Makefile', line 94):
+	$(CXX) \
+		$(CXXFLAGS) \
+		$(SRCDIR)/bindings.$(SRCEXT) \
+		-o $(BUILDDIR)/$(PYMODULE_FILENAME) \
+		$(LIBS)
 
 install: build/shared/libhx711.so
 #  Phony target (prerequisite of .PHONY).
@@ -378,13 +380,12 @@ execs:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 250 B / avg = 8 B
-# current buf: size = 8174 B / used = 250 B / count = 28 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 194 B / avg = 8 B
+# current buf: size = 8174 B / used = 194 B / count = 24 / avg = 8 B
 
-# strcache performance: lookups = 67 / hit rate = 58%
+# strcache performance: lookups = 61 / hit rate = 60%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=0/67=0%
-# Finished Make data base on Thu 
- Aug 19 23:16:55 2021
+# Load=24/8192=0%, Rehash=0, Collisions=0/61=0%
+# Finished Make data base on Fri Aug 20 20:54:57 2021
 
  
