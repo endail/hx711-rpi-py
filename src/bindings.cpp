@@ -31,6 +31,7 @@
 #include <vector>
 
 namespace py = pybind11;
+using namespace py::literals;
 using namespace HX711;
 
 PYBIND11_MODULE(HX711, m) {
@@ -285,7 +286,12 @@ PYBIND11_MODULE(HX711, m) {
             const int,
             const HX711::Value,
             const HX711::Value,
-            const HX711::Rate>()) 
+            const HX711::Rate>(),
+            py::arg("dataPin"),
+            py::arg("clockPin"),
+            py::arg("refUnit") = Value(1),
+            py::arg("offset") = Value(0),
+            py::arg("rate") = Rate::HZ_10) 
     ;
 
 

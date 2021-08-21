@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import sys
-sys.path.append("../build")
+sys.path.append("../bin")
 
 from HX711 import *
 
