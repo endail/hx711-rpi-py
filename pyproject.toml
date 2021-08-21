@@ -11,7 +11,7 @@ requires = [
 [tool.cibuildwheel]
 before-all = [
 
-    "sudo yum install -y gpiod libgpiod-dev libgpiod-doc"
+    "sudo apt-get install gpiod libgpiod-dev libgpiod-doc"
 
 ]
 
