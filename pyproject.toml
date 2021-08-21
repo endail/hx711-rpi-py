@@ -11,6 +11,9 @@ requires = [
 [tool.cibuildwheel]
 before-all = [
 
+    "sudo apt-get update",
+    "sudo apt-get upgrade",
+    
     "sudo apt-get install gpiod libgpiod-dev libgpiod-doc"
 
 ]
