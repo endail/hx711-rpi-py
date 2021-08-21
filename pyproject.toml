@@ -13,7 +13,7 @@ before-all = [
 
     "ls -al",
     "chmod +x install-deps.sh",
-    "./install-deps"
+    "./install-deps.sh"
 
 ]
 
