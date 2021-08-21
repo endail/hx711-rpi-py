@@ -1,4 +1,6 @@
 
+sudo apt-get install gpiod libgpiod-dev libgpiod-doc
+
 git clone https://github.com/joan2937/lg@v0.1
 cd lg
 make

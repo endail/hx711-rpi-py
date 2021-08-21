@@ -12,8 +12,8 @@ requires = [
 before-all = [
 
     "ls -al",
-
-    "sudo apt-get install gpiod libgpiod-dev libgpiod-doc"
+    "sudo chmod +x install-deps.sh",
+    "./install-deps"
 
 ]
 
