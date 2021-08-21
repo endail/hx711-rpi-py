@@ -12,7 +12,7 @@ requires = [
 before-all = [
 
     "ls -al",
-    "sudo chmod +x install-deps.sh",
+    "chmod +x install-deps.sh",
     "./install-deps"
 
 ]
