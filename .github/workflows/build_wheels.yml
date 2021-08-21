@@ -26,7 +26,10 @@ jobs:
           sudo ldconfig
           sudo chown -R $USER:$USER /home/runner/work
 
-      - uses: actions/checkout@v2
+      - name: Clone hx711
+        uses: actions/checkout@v2
+        with:
+          repository: 'endail/hx711'
 
       - name: Build and install libhx711
         run: |
@@ -35,6 +38,9 @@ jobs:
           sudo sh -c "echo '/usr/local/lib' >> /etc/ld.so.conf"
           sudo ldconfig
           sudo chown -R $USER:$USER /home/runner/work
+
+
+      - uses: actions/checkout@v2
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.1.1
