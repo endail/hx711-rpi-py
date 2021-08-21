@@ -11,19 +11,7 @@ requires = [
 [tool.cibuildwheel]
 before-all = [
 
-    "sudo yum install -y gpiod libgpiod-dev libgpiod-doc",
-
-    "git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg",
-    "cd lg",
-    "make && sudo make install",
-
-    "sudo ldconfig",
-
-    "git clone https://github.com/endail/hx711",
-    "cd hx711",
-    "make && sudo make install",
-
-    "sudo ldconfig",
+    "sudo yum install -y gpiod libgpiod-dev libgpiod-doc"
 
 ]
 
