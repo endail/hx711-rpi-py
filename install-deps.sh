@@ -21,4 +21,5 @@ cd ..
 #sudo ldconfig
 #sudo chown -R $USER:$USER /home/runner/work
 
-pip install "pybind11[global]"
+apt-get install pybind11-dev
+
