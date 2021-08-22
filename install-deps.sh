@@ -1,5 +1,5 @@
 
-sudo yum install "kernel-devel-uname-r == $(uname -r)"
+yum install "kernel-devel-uname-r == $(uname -r)"
 
 yum install -y gpiod libgpiod-dev libgpiod-doc
 
