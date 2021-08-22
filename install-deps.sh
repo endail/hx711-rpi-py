@@ -20,3 +20,5 @@ cd ..
 #sudo sh -c "echo '/usr/local/lib' >> /etc/ld.so.conf"
 #sudo ldconfig
 #sudo chown -R $USER:$USER /home/runner/work
+
+pip install "pybind11[global]"
