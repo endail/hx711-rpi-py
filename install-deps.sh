@@ -13,7 +13,7 @@ apt-get install ligpiod2 libgpiod2-dev
 
 git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
 cd lg
-make && sudo make install
+make && make install
 cd ..
 
 #sudo ldconfig
@@ -21,7 +21,7 @@ cd ..
 
 git clone https://github.com/endail/hx711
 cd hx711
-make && sudo make install
+make && make install
 cd ..
 
 #sudo sh -c "echo '/usr/local/lib' >> /etc/ld.so.conf"
