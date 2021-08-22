@@ -39,7 +39,5 @@ before-build = [
 ]
 
 [tool.cibuildwheel.linux]
-manylinux-x86_64_image = "quay.io/pypa/manylinux_2_24:latest"
+archs = ["i686"]
 manylinux-i686-image = "quay.io/pypa/manylinux_2_24:latest"
-manylinux-pypy_x86_64-image = "quay.io/pypa/manylinux_2_24:latest"
-manylinux-pypy_i686-image = "quay.io/pypa/manylinux_2_24:latest"
