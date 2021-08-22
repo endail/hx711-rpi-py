@@ -3,8 +3,6 @@ apt-get update && apt-get install -y --no-install-recommends apt-utils
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt full-upgrade -y
-apt-get install gpiod libgpiod-dev libgpiod-doc
-apt-get install ligpiod2 libgpiod2-dev
 
 git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
 cd lg
@@ -20,5 +18,5 @@ make && make install
 cd ..
 
 #sudo sh -c "echo '/usr/local/lib' >> /etc/ld.so.conf"
-sudo ldconfig
+#sudo ldconfig
 #sudo chown -R $USER:$USER /home/runner/work
