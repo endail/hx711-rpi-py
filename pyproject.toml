@@ -33,6 +33,10 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
+manylinux-x86_64_image = "manylinux_2_24"
+manylinux-i686-image = "manylinux_2_24"
+manylinux-pypy_x86_64-image = "manylinux_2_24"
+manylinux-pypy_i686-image = "manylinux_2_24"
 before-build = [
     "chmod +x install-deps.sh",
     "./install-deps.sh"

@@ -1,9 +1,9 @@
 
-yum check-update -y
-yum update -y
-yum install -y "kernel-devel-uname-r == $(uname -r)"
+#yum check-update -y
+#yum update -y
+#yum install -y "kernel-devel-uname-r == $(uname -r)"
 
-yum install -y gpiod libgpiod-dev libgpiod-doc
+apt-get install gpiod libgpiod-dev libgpiod-doc
 
 git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
 cd lg
