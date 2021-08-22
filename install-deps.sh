@@ -1,8 +1,4 @@
 
-#yum check-update -y
-#yum update -y
-#yum install -y "kernel-devel-uname-r == $(uname -r)"
-
 apt-get update && apt-get install -y --no-install-recommends apt-utils
 apt-get update -y
 apt-get upgrade -y
