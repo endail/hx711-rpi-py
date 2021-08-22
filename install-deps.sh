@@ -1,5 +1,7 @@
 
-yum install "kernel-devel-uname-r == $(uname -r)"
+yum check-update -y
+yum update -y
+yum install -y "kernel-devel-uname-r == $(uname -r)"
 
 yum install -y gpiod libgpiod-dev libgpiod-doc
 
