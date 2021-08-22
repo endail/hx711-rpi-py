@@ -1,7 +1,7 @@
 
 yum install -y gpiod libgpiod-dev libgpiod-doc
 
-git clone https://github.com/joan2937/lg@v0.1
+git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
 cd lg
 make && sudo make install
 cd ..
