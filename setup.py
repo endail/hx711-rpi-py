@@ -1,16 +1,7 @@
-from setuptools import setup
-from pybind11.setup_helpers import Pybind11Extension, build_ext
-from pybind11 import get_cmake_dir
-
-import sys
+# coding: utf-8
+from setuptools import setup, find_packages, Extension
 
 __version__ = "0.0.1"
-
-ext_modules = [
-    Pybind11Extension(
-		"HX711",
-        ["src/bindings.cpp"])
-]
 
 setup(
     name="HX711",
@@ -20,8 +11,17 @@ setup(
     url="https://github.com/endail/hx711-rpi-py",
     description="Python bindings for Raspberry Pi HX711 C++ Library",
     long_description="",
-    ext_modules=ext_modules,
-    extras_require={"test": "pytest"},
-    cmdclass={"build_ext": build_ext},
     zip_safe=False,
+    ext_modules=[
+        Extension(
+            name="HX711",
+            sources=[
+                "src/bindings.cpp"
+            ],
+            libraries=[
+                "hx711",
+                "lgpio"
+            ]
+        )
+    ]
 )

@@ -1,0 +1,39 @@
+[project]
+name = "hx711-rpi-py"
+version = "0.0.1"
+description="Python bindings for Raspberry Pi HX711 C++ Library"
+authors=[
+    "Daniel Robertson <52652357+endail@users.noreply.github.com>"
+]
+license = "MIT"
+readme = "README.md"
+python = "^3.6"
+homepage = "https://github.com/endail/hx711-rpi-py"
+repository = "https://github.com/endail/hx711-rpi-py"
+documentation = "https://github.com/endail/hx711-rpi-py"
+keywords = [
+    "hx711"
+]
+classifiers = [
+    "Topic :: Software Development"
+]
+
+[dependencies]
+
+[dev-dependencies]
+
+[scripts]
+
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "pybind11>=2.7.0",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.cibuildwheel]
+before-build = [
+    "chmod +x install-deps.sh",
+    "./install-deps.sh"
+]
