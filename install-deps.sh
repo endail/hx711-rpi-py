@@ -9,6 +9,7 @@ apt-get upgrade -y
 apt-get dist-upgrade -y
 apt full-upgrade -y
 apt-get install gpiod libgpiod-dev libgpiod-doc
+apt-get install ligpiod2 libgpiod2-dev
 
 git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
 cd lg
