@@ -7,6 +7,7 @@ apt-get update && apt-get install -y --no-install-recommends apt-utils
 apt-get update -y
 apt-get upgrade -y
 apt-get dist-upgrade -y
+apt full-upgrade -y
 apt-get install gpiod libgpiod-dev libgpiod-doc
 
 git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
