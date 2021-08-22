@@ -41,4 +41,4 @@ before-build = [
 [tool.cibuildwheel.linux]
 archs = ["i686"]
 manylinux-i686-image = "manylinux_2_24"
-manylinux-i686-image = "lukechilds/dockerpi"
+#manylinux-i686-image = "lukechilds/dockerpi"
