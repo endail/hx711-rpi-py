@@ -36,11 +36,8 @@ build-backend = "setuptools.build_meta"
 [tool.cibuildwheel]
 build-verbosity = 3
 before-all = [
-    "apt-get update -y",
-    "apt-get upgrade -y",
-    "apt-get dist-upgrade -y",
-    "apt full-upgrade -y",
-    "chmod +x install-deps.sh && ./install-deps.sh"
+    "chmod +x install-deps.sh",
+    "./install-deps.sh"
 ]
 
 [tool.cibuildwheel.linux]
