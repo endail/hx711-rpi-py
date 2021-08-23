@@ -74,7 +74,6 @@ endif
 ########################################################################
 
 ifeq ($(IS_PI),1)
-# only include these flags on rpi
 	CFLAGS :=	-march=native \
 				-mfpu=vfp \
 				-mfloat-abi=hard \
@@ -101,21 +100,8 @@ build:
 
 .PHONY: clean
 clean:
-	rm -r $(BUILDDIR)/*
 	rm -r $(BINDIR)/*
 
 .PHONY: dirs
 dirs:
 	mkdir -p $(BINDIR)
-	mkdir -p $(BUILDDIR)
-
-.PHONY: install
-install: $(BINDIR)/$(PYMODULE_FILENAME)
-	install -d $(DESTDIR)$(PREFIX)/lib/
-	install -m 644 $(BUILDDIR)/$(PYMODULE_FILENAME) $(DESTDIR)$(PREFIX)/lib/
-#	ldconfig $(DESTDIR)$(PREFIX)/lib
-
-.PHONY: uninstall
-uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/lib/HX711.*
-	ldconfig $(DESTDIR)$(PREFIX)/lib
