@@ -1,5 +1,6 @@
 # coding: utf-8
 from setuptools import setup, find_packages, Extension
+from pybind11.setup_helpers import Pybind11Extension
 
 __version__ = "0.0.1"
 
@@ -13,15 +14,22 @@ setup(
     long_description="",
     zip_safe=False,
     ext_modules=[
-        Extension(
-            name="HX711",
-            sources=[
-                "src/bindings.cpp"
-            ],
-            libraries=[
-                "hx711",
-                "lgpio"
-            ]
+
+        Pybind11Extension(
+            "HX711",
+            ["src/bindings.cpp"]
         )
+
+#        Extension(
+#            name="HX711",
+#            sources=[
+#                "src/bindings.cpp"
+#            ],
+#            libraries=[
+#                "hx711",
+#                "lgpio"
+#            ]
+#        )
+        
     ]
 )
