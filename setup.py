@@ -17,7 +17,11 @@ setup(
 
         Pybind11Extension(
             "HX711",
-            ["src/bindings.cpp"]
+            ["src/bindings.cpp"],
+            libraries=[
+                "hx711",
+                "lgpio"
+            ]
         )
 
 #        Extension(
