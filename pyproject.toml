@@ -48,7 +48,8 @@ before-build = [
 archs = [
     "auto"
 ]
-manylinux-x86_64-image = "manylinux_2_24"
-manylinux-i686-image = "manylinux_2_24"
+#manylinux-x86_64-image = "manylinux_2_24"
+#manylinux-i686-image = "manylinux_2_24"
+manylinux-i686-image = "dockcross/linux-armv6-lts"
 #manylinux-i686-image = "lukechilds/dockerpi"
 skip = "pp*"
