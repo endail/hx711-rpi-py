@@ -39,6 +39,10 @@ before-all = [
     "chmod +x install-deps.sh",
     "./install-deps.sh"
 ]
+before-build = [
+    "chmod +x install-deps.sh",
+    "./install-deps.sh"
+]
 
 [tool.cibuildwheel.linux]
 archs = [
