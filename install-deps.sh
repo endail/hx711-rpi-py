@@ -11,6 +11,8 @@ if ! $(ldconfig -p | grep -q liblgpio); then
     cd lg
     make && make install
     cd ..
+else
+    echo liblgpio already installed
 fi
 
 # build and install libhx711 if not found
@@ -19,4 +21,6 @@ if ! $(ldconfig -p | grep -q libhx711); then
     cd hx711
     make && make install
     cd ..
+else
+    echo libhx711 already installed
 fi
