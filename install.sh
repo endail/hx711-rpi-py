@@ -20,6 +20,3 @@ if ! $(ldconfig -p | grep -q libhx711); then
     make && make install
     cd ..
 fi
-
-git submodule update --init
-make all

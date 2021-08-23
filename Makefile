@@ -88,7 +88,13 @@ CXXFLAGS :=		-std=c++11 \
 
 .PHONY: all
 all:	dirs \
+		init \
 		build
+
+.PHONY: init
+init:
+#	get pybind
+	git submodule update --init
 
 .PHONY: build
 build:
