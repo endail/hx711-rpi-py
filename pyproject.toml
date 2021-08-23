@@ -33,7 +33,11 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-before-build = [
+#before-build = [
+#    "chmod +x install-deps.sh",
+#    "./install-deps.sh"
+#]
+before-all = [
     "chmod +x install-deps.sh",
     "./install-deps.sh"
 ]
