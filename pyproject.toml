@@ -46,7 +46,7 @@ before-build = [
 
 [tool.cibuildwheel.linux]
 archs = [
-    "auto"
+    "i686"
 ]
 #manylinux-x86_64-image = "manylinux_2_24"
 #manylinux-i686-image = "manylinux_2_24"
