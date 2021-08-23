@@ -17,7 +17,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.1.1
 
-      - uses: actions/upload-artifact@v2
+      - name: Upload wheels
+        uses: actions/upload-artifact@v2
         with:
-          path: ./wheelhouse/*.whl
-          
+          path: wheelhouse/*.whl

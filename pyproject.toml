@@ -1,4 +1,5 @@
 [project]
+requires-python = ">=3.6"
 name = "hx711-rpi-py"
 version = "0.0.1"
 description="Python bindings for Raspberry Pi HX711 C++ Library"
@@ -33,17 +34,19 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-#before-build = [
-#    "chmod +x install-deps.sh",
-#    "./install-deps.sh"
-#]
+build-verbosity = 3
 before-all = [
-    "chmod +x install-deps.sh",
-    "./install-deps.sh"
+    "apt-get update -y",
+    "apt-get upgrade -y"
+    "apt-get dist-upgrade -y",
+    "apt full-upgrade -y"
+    "chmod +x install-deps.sh && ./install-deps.sh"
 ]
 
 [tool.cibuildwheel.linux]
-archs = ["i686"]
+archs = [
+    "auto"
+]
 manylinux-i686-image = "manylinux_2_24"
 #manylinux-i686-image = "lukechilds/dockerpi"
 skip = "pp*"
