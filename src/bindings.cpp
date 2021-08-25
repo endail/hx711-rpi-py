@@ -20,21 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include "../extern/pybind11/include/pybind11/pybind11.h"
-#include "../extern/pybind11/include/pybind11/operators.h"
-#include "../extern/pybind11/include/pybind11/stl.h"
-#include "../extern/pybind11/include/pybind11/chrono.h"
-
-//#include <pybind11/pybind11.h>
-//#include <pybind11/chrono.h>
-//#include <pybind11/operators.h>
-//#include <pybind11/stl.h>
-
-#include <hx711/common.h>
 #include <chrono>
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <hx711/common.h>
+#include "../extern/pybind11/include/pybind11/chrono.h"
+#include "../extern/pybind11/include/pybind11/operators.h"
+#include "../extern/pybind11/include/pybind11/pybind11.h"
+#include "../extern/pybind11/include/pybind11/stl.h"
 
 namespace py = pybind11;
 using namespace py::literals;

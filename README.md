@@ -12,7 +12,7 @@ Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/h
 
 ![hx711.gif](hx711.gif)
 
-The .gif above illustrates the output of a [simple Python script](src/test.py) on a Raspberry Pi Zero W where the HX711 chip was operating at 80Hz. Each time the `.weight` function is called, the median of three samples are used.
+The .gif above illustrates the output of a [simple Python script](src/test.py) on a Raspberry Pi Zero W where the HX711 chip was operating at 80Hz. Each time the `.weight` function is called, the median of three samples is used.
 
 ## Example
 
