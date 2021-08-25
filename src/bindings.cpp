@@ -285,6 +285,7 @@ PYBIND11_MODULE(HX711, m) {
 
         .def("normalise", &AbstractScale::normalise, "v"_a)
         
+        /*
         .def("getValues",
             static_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues),
             "samples"_a)
@@ -292,7 +293,8 @@ PYBIND11_MODULE(HX711, m) {
         .def("getValues",
             static_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues),
             "timeout"_a)
-        
+        */
+
         .def("read", &AbstractScale::read, "o"_a = Options())
         .def("zero", &AbstractScale::zero, "o"_a = Options())
 
