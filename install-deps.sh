@@ -7,12 +7,12 @@ fi
 
 # build and install liblgpio if not found
 if ! $(ldconfig -p | grep -q liblgpio); then
-    git clone --depth 1 --branch v0.1 https://github.com/joan2937/lg
+    git clone https://github.com/joan2937/lg
     cd lg
     make && make install
     cd ..
 else
-    echo liblgpio already installed
+    echo "liblgpio already installed"
 fi
 
 # build and install libhx711 if not found
@@ -22,5 +22,5 @@ if ! $(ldconfig -p | grep -q libhx711); then
     make && make install
     cd ..
 else
-    echo libhx711 already installed
+    echo "libhx711 already installed"
 fi
