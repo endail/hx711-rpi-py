@@ -35,10 +35,6 @@ using namespace HX711;
 namespace py = pybind11;
 using namespace py::literals;
 
-template <typename... Args>
-using overload_cast_ = py::detail::overload_cast_impl<Args...>;
-
-
 PYBIND11_MODULE(HX711, m) {
 
     m.doc() = "HX711 namespace";
@@ -144,8 +140,7 @@ PYBIND11_MODULE(HX711, m) {
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
         
         .def("toString",
-            overload_cast_<const Mass::Unit>()(&Mass::toString const)
-            //static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString),
+            static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString),
             "u"_a)
         
         .def("__str__",
