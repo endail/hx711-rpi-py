@@ -141,7 +141,8 @@ PYBIND11_MODULE(HX711, m) {
         .def("convertTo", &Mass::convertTo, "to"_a)
         
         .def("toString",
-            overload_cast_<>()(&Mass::toString))
+            overload_cast_<void>const()(&Mass::toString))
+            //static_cast<std::string(Mass::*)() const>(&Mass::toString))
         
         .def("toString",
             static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString),
