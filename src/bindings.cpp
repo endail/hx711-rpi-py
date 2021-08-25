@@ -249,7 +249,30 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.AbstractScale
      */
-    py::class_<AbstractScale>(m, "AbstractScale")
+    class PyAbstractScale : public AbstractScale {
+        using AbstractScale::AbstractScale;
+
+        std::vector<Value> getValues(const std::size_t samples) override {
+            PYBIND11_OVERRIDE_PURE(
+                std::vector<Value>,
+                AbstractScale,
+                getValues,
+                samples
+            );
+        }
+
+        std::vector<Value> getValues(const std::chrono::nanoseconds timeout) override {
+            PYBIND11_OVERRIDE_PURE(
+                std::vector<Value>,
+                AbstractScale,
+                getValues,
+                timeout
+            );
+        }
+
+    };
+
+    py::class_<AbstractScale, PyAbstractScale>(m, "AbstractScale")
 
         .def("setUnit", &AbstractScale::setUnit, "unit"_a)
         .def("getUnit", &AbstractScale::getUnit)
@@ -263,26 +286,26 @@ PYBIND11_MODULE(HX711, m) {
         .def("normalise", &AbstractScale::normalise, "v"_a)
         
         .def("getValues",
-            dynamic_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues),
+            static_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues),
             "samples"_a)
 
         .def("getValues",
-            dynamic_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues),
+            static_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues),
             "timeout"_a)
         
         .def("read", &AbstractScale::read, "o"_a = Options())
         .def("zero", &AbstractScale::zero, "o"_a = Options())
 
         .def("weight",
-            dynamic_cast<Mass(AbstractScale::*)(const Options)>(&AbstractScale::weight),
+            static_cast<Mass(AbstractScale::*)(const Options)>(&AbstractScale::weight),
             "o"_a = Options())
 
         .def("weight",
-            dynamic_cast<Mass(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::weight),
+            static_cast<Mass(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::weight),
             "timeout"_a)
 
         .def("weight",
-            dynamic_cast<Mass(AbstractScale::*)(const std::size_t)>(&AbstractScale::weight),
+            static_cast<Mass(AbstractScale::*)(const std::size_t)>(&AbstractScale::weight),
             "samples"_a)
 
     ;
@@ -291,7 +314,30 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.SimpleHX711
      */
-    py::class_<SimpleHX711, HX711::HX711, AbstractScale>(m, "SimpleHX711")
+    class PySimpleHX711 : public SimpleHX711 {
+        using SimpleHX711::SimpleHX711;
+
+        std::vector<Value> getValues(const std::size_t samples) override {
+            PYBIND11_OVERRIDE(
+                std::vector<Value>,
+                SimpleHX711,
+                getValues,
+                samples
+            );
+        }
+
+        std::vector<Value> getValues(const std::chrono::nanoseconds timeout) override {
+            PYBIND11_OVERRIDE(
+                std::vector<Value>,
+                SimpleHX711,
+                getValues,
+                timeout
+            );
+        }
+
+    };
+
+    py::class_<SimpleHX711, HX711::HX711, AbstractScale, PySimpleHX711>(m, "SimpleHX711")
         .def(py::init<
             const int,
             const int,
