@@ -138,14 +138,17 @@ PYBIND11_MODULE(HX711, m) {
         
         .def("toString",
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
-        
+
         .def("toString",
             static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString),
             "u"_a)
-        
+
         .def("__str__",
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
-        
+
+        .def("__repr__",
+            static_cast<std::string(Mass::*)() const>(&Mass::toString))
+
         .def_static("convert", &Mass::convert,
             "amount"_a, "from"_a, "to"_a = Mass::Unit::UG)
 
@@ -177,6 +180,12 @@ PYBIND11_MODULE(HX711, m) {
 
         .def("__int__",
             static_cast<INTERNAL_VALUE_TYPE(Value::*)() const>(&Value::operator INTERNAL_VALUE_TYPE))
+
+        .def("__str__",
+            [](const Value& v) { return std::to_string(v); })
+
+        .def("__repr__",
+            [](const Value& v) { return std::to_string(v); })
 
         .def(py::init<const INTERNAL_VALUE_TYPE>(), "v"_a)
         .def(py::init<>())
@@ -293,7 +302,7 @@ PYBIND11_MODULE(HX711, m) {
             "clockPin"_a,
             "refUnit"_a = Value(1),
             "offset"_a = Value(0),
-            "rate"_a = Rate::HZ_10) 
+            "rate"_a = Rate::HZ_10)
     ;
 
 
