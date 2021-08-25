@@ -144,7 +144,7 @@ PYBIND11_MODULE(HX711, m) {
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
         
         .def("toString",
-            overload_cast_<const Mass::Unit>()(&Mass::toString)
+            overload_cast_<const Mass::Unit>()(&Mass::toString const)
             //static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString),
             "u"_a)
         
