@@ -263,26 +263,26 @@ PYBIND11_MODULE(HX711, m) {
         .def("normalise", &AbstractScale::normalise, "v"_a)
         
         .def("getValues",
-            static_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues),
+            dynamic_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues),
             "samples"_a)
 
         .def("getValues",
-            static_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues),
+            dynamic_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues),
             "timeout"_a)
         
         .def("read", &AbstractScale::read, "o"_a = Options())
         .def("zero", &AbstractScale::zero, "o"_a = Options())
 
         .def("weight",
-            static_cast<Mass(AbstractScale::*)(const Options)>(&AbstractScale::weight),
+            dynamic_cast<Mass(AbstractScale::*)(const Options)>(&AbstractScale::weight),
             "o"_a = Options())
 
         .def("weight",
-            static_cast<Mass(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::weight),
+            dynamic_cast<Mass(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::weight),
             "timeout"_a)
 
         .def("weight",
-            static_cast<Mass(AbstractScale::*)(const std::size_t)>(&AbstractScale::weight),
+            dynamic_cast<Mass(AbstractScale::*)(const std::size_t)>(&AbstractScale::weight),
             "samples"_a)
 
     ;
