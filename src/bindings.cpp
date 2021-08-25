@@ -311,7 +311,7 @@ PYBIND11_MODULE(HX711, m) {
             "clockPin"_a,
             "refUnit"_a = Value(1),
             "offset"_a = Value(0),
-            "rate"_a = Rate::HZ_10))
+            "rate"_a = Rate::HZ_10)
     ;
 
 }
