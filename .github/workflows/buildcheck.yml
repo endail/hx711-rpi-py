@@ -7,10 +7,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Install deps
+        run: |
+          wget https://abyz.me.uk/lg/lg.zip
+          unzip lg.zip
+          cd lg
+          make
+          sudo make install
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install deps
+      - name: Install deps 2
         run: sudo ./install-deps.sh
 
       - name: Build
