@@ -291,7 +291,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.SimpleHX711
      */
-    };
     py::class_<SimpleHX711, HX711::HX711, AbstractScale>(m, "SimpleHX711")
         .def(py::init<
             const int,
