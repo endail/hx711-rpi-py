@@ -249,6 +249,7 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.AbstractScale
      */
+    /*
     class PyAbstractScale : public AbstractScale {
         using AbstractScale::AbstractScale;
 
@@ -271,8 +272,9 @@ PYBIND11_MODULE(HX711, m) {
         }
 
     };
+    */
 
-    py::class_<AbstractScale, PyAbstractScale>(m, "AbstractScale")
+    py::class_<AbstractScale>(m, "AbstractScale")
 
         .def("setUnit", &AbstractScale::setUnit, "unit"_a)
         .def("getUnit", &AbstractScale::getUnit)
@@ -316,6 +318,7 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.SimpleHX711
      */
+    /*
     class PySimpleHX711 : public SimpleHX711 {
         using SimpleHX711::SimpleHX711;
 
@@ -338,8 +341,9 @@ PYBIND11_MODULE(HX711, m) {
         }
 
     };
+    */
 
-    py::class_<SimpleHX711, PySimpleHX711, HX711::HX711, AbstractScale, PyAbstractScale>(m, "SimpleHX711")
+    py::class_<SimpleHX711, HX711::HX711, AbstractScale>(m, "SimpleHX711")
         .def(py::init<
             const int,
             const int,
