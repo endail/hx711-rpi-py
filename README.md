@@ -1,4 +1,4 @@
-# hx711-rpi-py
+# Raspberry Pi HX711 Python Bindings
 
 Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/hx711)
 
@@ -64,5 +64,10 @@ make
 
 # bin directory will contain python module
 # eg. HX711.cpython-37m-arm-linux-gnueabihf.so
-# import this file into your script
+# import this file into your Python script as in examples
+# above
 ```
+
+## Documentation
+
+As the Python code relies upon the [underlying C++ library](https://github.com/endail/hx711#documentation), the documentation is identical. However, not all of the code is exposed to Python. An example is the [Utility class](https://github.com/endail/hx711/blob/master/include/Utility.h), which is only meant for use within the C++ library. You can check precisely which functionality is accessible through Python in the [bindings.cpp file](src/bindings.cpp).
