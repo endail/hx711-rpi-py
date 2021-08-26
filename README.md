@@ -53,19 +53,18 @@ while True:
 
 ```console
 # Step 1: clone this repository
-git clone https://github.com/endail/hx711-rpi-py
-cd hx711-rpi-py
+pi@raspberrypi:~ $ git clone https://github.com/endail/hx711-rpi-py
+pi@raspberrypi:~ $ cd hx711-rpi-py
 
 # Step 2: install liblgpio and libhx711 dependencies
-sudo ./install-deps
+pi@raspberrypi:~/hx711-rpi-py $ sudo ./install-deps
 
 # Step 3: build (this may take some time)
-make
+pi@raspberrypi:~/hx711-rpi-py $ make
 
 # bin directory will contain python module
 # eg. HX711.cpython-37m-arm-linux-gnueabihf.so
-# import this file into your Python script as in examples
-# above
+# import this file into your Python script as in examples above
 ```
 
 ## Documentation
