@@ -30,9 +30,10 @@
 #include "../extern/pybind11/include/pybind11/pybind11.h"
 #include "../extern/pybind11/include/pybind11/stl.h"
 
+using namespace HX711;
+
 namespace py = pybind11;
 using namespace py::literals;
-using namespace HX711;
 
 PYBIND11_MODULE(HX711, m) {
 
@@ -86,19 +87,19 @@ PYBIND11_MODULE(HX711, m) {
      * HX711.GpioException
      */
     py::class_<GpioException>(m, "GpioException")
-        .def(py::init<const char*>());
+        .def(py::init<const char*>(), "what_arg"_a);
 
     /**
      * HX711.IntegrityException
      */
     py::class_<IntegrityException>(m, "IntegrityException")
-        .def(py::init<const char*>());
+        .def(py::init<const char*>(), "what_arg"_a);
 
     /**
      * HX711.TimeoutException
      */
     py::class_<TimeoutException>(m, "TimeoutException")
-        .def(py::init<const char*>());
+        .def(py::init<const char*>(), "what_arg"_a);
 
 
     /**
@@ -120,12 +121,10 @@ PYBIND11_MODULE(HX711, m) {
 
     mass_Type
         
-        .def(
-            py::init<const double, const Mass::Unit>(),
-            py::arg("amount") = 0.0,
-            py::arg("u") = Mass::Unit::UG)
+        .def(py::init<const double, const Mass::Unit>(),
+            "amount"_a = 0.0, "u"_a = Mass::Unit::UG)
 
-        .def(py::init<const Mass&>())
+        .def(py::init<const Mass&>(), "m2"_a)
 
         .def("__float__",
             static_cast<double (Mass::*)() const>(&Mass::operator double))
@@ -133,20 +132,25 @@ PYBIND11_MODULE(HX711, m) {
         .def("getValue", &Mass::getValue)
 
         .def("getUnit", &Mass::getUnit)
-        .def("setUnit", &Mass::setUnit)
+        .def("setUnit", &Mass::setUnit, "u"_a)
         
-        .def("convertTo", &Mass::convertTo)
+        .def("convertTo", &Mass::convertTo, "to"_a)
         
         .def("toString",
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
-        
+
         .def("toString",
-            static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString))
-        
+            static_cast<std::string(Mass::*)(const Mass::Unit) const>(&Mass::toString),
+            "u"_a)
+
         .def("__str__",
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
-        
-        .def_static("convert", &Mass::convert)
+
+        .def("__repr__",
+            static_cast<std::string(Mass::*)() const>(&Mass::toString))
+
+        .def_static("convert", &Mass::convert,
+            "amount"_a, "from"_a, "to"_a = Mass::Unit::UG)
 
     ;
 
@@ -177,7 +181,13 @@ PYBIND11_MODULE(HX711, m) {
         .def("__int__",
             static_cast<INTERNAL_VALUE_TYPE(Value::*)() const>(&Value::operator INTERNAL_VALUE_TYPE))
 
-        .def(py::init<const INTERNAL_VALUE_TYPE>())
+        .def("__str__",
+            [](const Value& v) { return std::to_string(v); })
+
+        .def("__repr__",
+            [](const Value& v) { return std::to_string(v); })
+
+        .def(py::init<const INTERNAL_VALUE_TYPE>(), "v"_a)
         .def(py::init<>())
 
     ;
@@ -191,22 +201,24 @@ PYBIND11_MODULE(HX711, m) {
      */
     py::class_<HX711::HX711>(m, "HX711")
 
-        .def(py::init<const int, const int, const Rate>())
+        .def(py::init<const int, const int, const Rate>(),
+            "dataPin"_a, "clockPin"_a, "rate"_a = Rate::HZ_10)
 
         .def("begin", &HX711::HX711::begin)
 
-        .def("setStrictTiming", &HX711::HX711::setStrictTiming)
+        .def("setStrictTiming", &HX711::HX711::setStrictTiming, "strict"_a)
         .def("isStrictTiming", &HX711::HX711::isStrictTiming)
 
         .def("getFormat", &HX711::HX711::getFormat)
-        .def("setFormat", &HX711::HX711::setFormat)
+        .def("setFormat", &HX711::HX711::setFormat, "bitFormat"_a)
 
         .def("getDataPin", &HX711::HX711::getDataPin)
         .def("getClockPin", &HX711::HX711::getClockPin)
 
         .def("getChannel", &HX711::HX711::getChannel)
         .def("getGain", &HX711::HX711::getGain)
-        .def("setConfig", &HX711::HX711::setConfig)
+        .def("setConfig", &HX711::HX711::setConfig,
+            "c"_a = Channel::A, "g"_a = Gain::GAIN_128)
 
         .def("isReady", &HX711::HX711::isReady)
         .def("readValue", &HX711::HX711::readValue)
@@ -228,8 +240,8 @@ PYBIND11_MODULE(HX711, m) {
         .def_readwrite("timeout", &Options::timeout)
 
         .def(py::init<>())
-        .def(py::init<const std::size_t>())
-        .def(py::init<const std::chrono::nanoseconds>())
+        .def(py::init<const std::size_t>(), "s"_a)
+        .def(py::init<const std::chrono::nanoseconds>(), "t"_a)
 
     ;
 
@@ -239,40 +251,39 @@ PYBIND11_MODULE(HX711, m) {
      */
     py::class_<AbstractScale>(m, "AbstractScale")
 
-        .def("setUnit", &AbstractScale::setUnit)
+        .def("setUnit", &AbstractScale::setUnit, "unit"_a)
         .def("getUnit", &AbstractScale::getUnit)
 
         .def("getReferenceUnit", &AbstractScale::getReferenceUnit)
-        .def("setReferenceUnit", &AbstractScale::setReferenceUnit)
+        .def("setReferenceUnit", &AbstractScale::setReferenceUnit, "refUnit"_a)
 
         .def("getOffset", &AbstractScale::getOffset)
-        .def("setOffset", &AbstractScale::setOffset)
+        .def("setOffset", &AbstractScale::setOffset, "offset"_a)
 
-        .def("normalise", &AbstractScale::normalise)
+        .def("normalise", &AbstractScale::normalise, "v"_a)
         
         .def("getValues",
-            static_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues))
-        
-        .def("getValues",
-            static_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues))
-        
-        .def("read",
-            &AbstractScale::read,
-            py::arg("o") = Options())
+            static_cast<std::vector<Value>(AbstractScale::*)(const std::size_t)>(&AbstractScale::getValues),
+            "samples"_a)
 
-        .def("zero",
-            &AbstractScale::zero,
-            py::arg("o") = Options())
+        .def("getValues",
+            static_cast<std::vector<Value>(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::getValues),
+            "timeout"_a)
+
+        .def("read", &AbstractScale::read, "o"_a = Options())
+        .def("zero", &AbstractScale::zero, "o"_a = Options())
 
         .def("weight",
             static_cast<Mass(AbstractScale::*)(const Options)>(&AbstractScale::weight),
-            py::arg("o") = Options())
+            "o"_a = Options())
 
         .def("weight",
-            static_cast<Mass(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::weight))
+            static_cast<Mass(AbstractScale::*)(const std::chrono::nanoseconds)>(&AbstractScale::weight),
+            "timeout"_a)
 
         .def("weight",
-            static_cast<Mass(AbstractScale::*)(const std::size_t)>(&AbstractScale::weight))
+            static_cast<Mass(AbstractScale::*)(const std::size_t)>(&AbstractScale::weight),
+            "samples"_a)
 
     ;
 
@@ -287,11 +298,11 @@ PYBIND11_MODULE(HX711, m) {
             const HX711::Value,
             const HX711::Value,
             const HX711::Rate>(),
-            py::arg("dataPin"),
-            py::arg("clockPin"),
-            py::arg("refUnit") = Value(1),
-            py::arg("offset") = Value(0),
-            py::arg("rate") = Rate::HZ_10) 
+            "dataPin"_a,
+            "clockPin"_a,
+            "refUnit"_a = Value(1),
+            "offset"_a = Value(0),
+            "rate"_a = Rate::HZ_10)
     ;
 
 
@@ -304,7 +315,12 @@ PYBIND11_MODULE(HX711, m) {
             const int,
             const HX711::Value,
             const HX711::Value,
-            const HX711::Rate>())
+            const HX711::Rate>(),
+            "dataPin"_a,
+            "clockPin"_a,
+            "refUnit"_a = Value(1),
+            "offset"_a = Value(0),
+            "rate"_a = Rate::HZ_10)
     ;
 
 }
