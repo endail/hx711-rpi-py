@@ -20,7 +20,7 @@ The .gif above illustrates the output of a [simple Python script](src/test.py) o
 from HX711 import *
 
 # create a SimpleHX711 object using GPIO pin 2 as the data pin,
-# and GPIO pin 3 as the clock pin, -370 as the reference unit, and
+# GPIO pin 3 as the clock pin, -370 as the reference unit, and
 # -367471 as the offset
 hx = SimpleHX711(2, 3, -370, -367471)
 
