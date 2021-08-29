@@ -1,5 +1,6 @@
 import os
 import sys
+from datetime import timedelta
 
 sys.path.append("bin")
 
@@ -18,9 +19,6 @@ except TimeoutException:
     print("Failed to connect to HX711 chip", file=sys.stderr)
     sys.exit(os.EX_UNAVAILABLE)
 
-if len(hx.getValues(10)) != 10:
-    print("Failed to connect to HX711 chip", file=sys.stderr)
-    sys.exit(os.EX_UNAVAILABLE)
 
 print("""
 \x1B[2J\x1B[H
