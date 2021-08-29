@@ -11,7 +11,7 @@ if len(sys.argv) != 3:
 
 try:
     hx = SimpleHX711(int(sys.argv[1]), int(sys.argv[2]), 1, 0)
-except HX711.GpioException:
+except GpioException:
     print("Failed to connect to HX711 chip", file=sys.stderr)
     sys.exit(os.EX_UNAVAILABLE)
 except TimeoutException:

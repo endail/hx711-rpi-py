@@ -86,22 +86,22 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.GpioException
      */
-    py::class_<GpioException>(m, "GpioException")
-        .def(py::init<const char*>(), "what_arg"_a);
+    //py::class_<GpioException>(m, "GpioException")
+    //    .def(py::init<const char*>(), "what_arg"_a);
     py::register_exception<GpioException>(m, "GpioException");
 
     /**
      * HX711.IntegrityException
      */
-    py::class_<IntegrityException>(m, "IntegrityException")
-        .def(py::init<const char*>(), "what_arg"_a);
+    //py::class_<IntegrityException>(m, "IntegrityException")
+    //    .def(py::init<const char*>(), "what_arg"_a);
     py::register_exception<IntegrityException>(m, "IntegrityException");
 
     /**
      * HX711.TimeoutException
      */
-    py::class_<TimeoutException>(m, "TimeoutException")
-        .def(py::init<const char*>(), "what_arg"_a);
+    //py::class_<TimeoutException>(m, "TimeoutException")
+    //    .def(py::init<const char*>(), "what_arg"_a);
     py::register_exception<TimeoutException>(m, "TimeoutException");
 
 
