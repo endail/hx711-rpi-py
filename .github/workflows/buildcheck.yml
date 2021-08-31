@@ -12,7 +12,9 @@ jobs:
         image_additional_mb: 10000
         commands: |
             sudo apt-get update -y
-            sudo apt-get install python3-gpiozero -y
+            sudo apt-get full-upgrade -y
             sudo apt-get install git-all -y
+            sudo apt install swig python-dev python3-dev -y
+            sudo apt install python-setuptools python3-setuptools -y
             sudo ./install-deps.sh
             make

@@ -7,9 +7,15 @@ fi
 
 # build and install liblgpio if not found
 if ! $(ldconfig -p | grep -q liblgpio); then
-    git clone https://github.com/joan2937/lg
+    #git clone https://github.com/joan2937/lg
+    #cd lg
+    #make && make install
+    #cd ..
+    wget https://abyz.me.uk/lg/lg.zip
+    unzip lg.zip
     cd lg
-    make && make install
+    make
+    sudo make install
     cd ..
 else
     echo "liblgpio already installed"
