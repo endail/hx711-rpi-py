@@ -67,6 +67,14 @@ pi@raspberrypi:~/hx711-rpi-py $ make
 # import this file into your Python script as in examples above
 ```
 
+## Calibrate
+
+There is a Python script in the `src` directory you can use to calibrate your load cell and obtain the reference unit and offset values referred to above. After you build the Python module as described in the section above, run the script and follow the prompts:
+
+```console
+pi@raspberrypi:~/hx711-rpi-py $ python3 src/calibrate.py
+```
+
 ## Documentation
 
 As the Python code relies upon the [underlying C++ library](https://github.com/endail/hx711#documentation), the documentation is identical. However, not all of the code is exposed to Python. An example is the [Utility class](https://github.com/endail/hx711/blob/master/include/Utility.h), which is only meant for use within the C++ library. You can check precisely which functionality is accessible through Python in the [bindings.cpp file](src/bindings.cpp).
