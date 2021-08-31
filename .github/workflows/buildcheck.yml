@@ -10,5 +10,8 @@ jobs:
     - uses: pguyot/arm-runner-action@v1
       with:
         commands: |
+            sudo apt-get update
+            sudo apt-get -y upgrade
+            sudo apt-get install git-all
             sudo ./install-deps.sh
             make
