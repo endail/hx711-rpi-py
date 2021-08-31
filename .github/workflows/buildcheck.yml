@@ -11,7 +11,7 @@ jobs:
       with:
         commands: |
             sudo apt-get update
-            sudo apt-get -y upgrade
+            sudo apt-get install python3-gpiozero python3-config
             sudo apt-get install git-all
             sudo ./install-deps.sh
             make
