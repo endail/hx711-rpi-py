@@ -10,8 +10,8 @@ jobs:
     - uses: pguyot/arm-runner-action@v1
       with:
         commands: |
-            sudo apt-get update
-            sudo apt-get install python3-gpiozero
-            sudo apt-get install git-all
+            sudo apt-get update -y
+            sudo apt-get install python3-gpiozero -y
+            sudo apt-get install git-all -y
             sudo ./install-deps.sh
             make
