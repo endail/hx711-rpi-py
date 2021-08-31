@@ -6,20 +6,9 @@ jobs:
     name: buildcheck
     runs-on: ubuntu-latest
     steps:
-
-      - name: Install deps
-        run: |
-          wget https://abyz.me.uk/lg/lg.zip
-          unzip lg.zip
-          cd lg
-          make
-          sudo make install
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Install deps 2
-        run: sudo ./install-deps.sh
-
-      - name: Build
-        run: make
+    - uses: actions/checkout@v2
+    - uses: pguyot/arm-runner-action@v1
+      with:
+        commands: |
+            sudo ./install-deps.sh
+            make
