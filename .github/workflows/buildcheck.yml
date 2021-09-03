@@ -25,4 +25,3 @@ jobs:
         image_additional_mb: 10000
         cpu: ${{ matrix.cpu }}
         optimize_image: false
-        exit_on_fail: true

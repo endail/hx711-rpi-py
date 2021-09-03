@@ -1,5 +1,7 @@
 # Raspberry Pi HX711 Python Bindings
 
+[![Build Status](https://github.com/endail/hx711-rpi-py/actions/workflows/buildcheck.yml/badge.svg)](https://github.com/endail/hx711-rpi-py/actions/workflows/buildcheck.yml)
+
 Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/hx711)
 
 - Read from a HX711 using Python
