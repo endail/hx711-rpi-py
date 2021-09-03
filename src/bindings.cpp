@@ -139,6 +139,21 @@ PYBIND11_MODULE(HX711, m) {
         
         .def("convertTo", &Mass::convertTo, "to"_a)
         
+        .def(py::self + py::self)
+        .def(py::self - py::self)
+        .def(py::self * py::self)
+        .def(py::self / py::self)
+        .def(py::self += py::self)
+        .def(py::self -= py::self)
+        .def(py::self *= py::self)
+        .def(py::self /= py::self)
+        .def(py::self == py::self)
+        .def(py::self != py::self)
+        .def(py::self < py::self)
+        .def(py::self > py::self)
+        .def(py::self <= py::self)
+        .def(py::self >= py::self)
+
         .def("toString",
             static_cast<std::string(Mass::*)() const>(&Mass::toString))
 
