@@ -5,16 +5,21 @@ jobs:
   build:
     name: buildcheck
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        base_image: ["raspios_lite:2021-05-07"]
+        cpu: [arm1176, cortex-a8]
     steps:
     - uses: actions/checkout@v2
     - uses: pguyot/arm-runner-action@v1
       with:
-        image_additional_mb: 10000
         commands: |
             sudo apt-get update -y
             sudo apt-get full-upgrade -y
-            sudo apt-get install git-all -y
-            sudo apt install swig python-dev python3-dev -y
-            sudo apt install python-setuptools python3-setuptools -y
             sudo ./install-deps.sh
             make
+        base_image: ${{ matrix.base_image }}
+        image_additional_mb: 10000
+        cpu: ${{ matrix.cpu }}
+        optimize_image: false
+        exit_on_fail: true
