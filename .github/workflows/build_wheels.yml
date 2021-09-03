@@ -24,8 +24,8 @@ jobs:
             sudo apt install python-setuptools python3-setuptools -y
             sudo ./install-deps.sh
 
-            python3 -m pip install cibuildwheel==2.1.1
-            python3 -m cibuildwheel --output-dir wheelhouse
+            sudo python3 -m pip install cibuildwheel==2.1.1
+            sudo python3 -m cibuildwheel --output-dir wheelhouse
 
         base_image: ${{ matrix.base_image }}
         image_additional_mb: 10000
