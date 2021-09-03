@@ -212,6 +212,9 @@ PYBIND11_MODULE(HX711, m) {
         .def("setStrictTiming", &HX711::HX711::setStrictTiming, "strict"_a)
         .def("isStrictTiming", &HX711::HX711::isStrictTiming)
 
+        .def("useDelays", &HX711::HX711::useDelays, "use"_a)
+        .def("isUsingDelays", &HX711::HX711::isUsingDelays)
+
         .def("getFormat", &HX711::HX711::getFormat)
         .def("setFormat", &HX711::HX711::setFormat, "bitFormat"_a)
 
