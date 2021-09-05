@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, find_packages
 from pybind11.setup_helpers import Pybind11Extension
 
 # TODO: get data from pyproject.toml
@@ -14,6 +14,9 @@ setup(
     url="https://github.com/endail/hx711-rpi-py",
     description="Python bindings for Raspberry Pi HX711 C++ Library",
     long_description="",
+    license="MIT",
+    package_dir={"": "src"},
+    packages=find_packages("src"),
     ext_modules=[
         Pybind11Extension(
             name="HX711",
@@ -21,8 +24,8 @@ setup(
                 "src/bindings.cpp"
             ],
             libraries=[
-                "hx711",
-                "lgpio"
+                "lgpio",
+                "hx711"
             ]
         )
     ]

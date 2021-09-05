@@ -20,8 +20,4 @@ jobs:
             sudo apt install swig python-dev python3-dev -y
             sudo apt install python-setuptools python3-setuptools -y
             sudo ./install-deps.sh
-            make
-        base_image: ${{ matrix.base_image }}
-        image_additional_mb: 10000
-        cpu: ${{ matrix.cpu }}
-        optimize_image: false
+            python3 -m pip install .
