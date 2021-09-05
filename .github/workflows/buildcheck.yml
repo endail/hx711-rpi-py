@@ -8,16 +8,36 @@ jobs:
     strategy:
       matrix:
         base_image: ["raspios_lite:2021-05-07"]
-        cpu: [arm1176, cortex-a8]
+        cpu: [cortex-a8]
     steps:
+    
     - uses: actions/checkout@v2
-    - uses: pguyot/arm-runner-action@v1
+    
+    - name: build rpi environment
+      uses: pguyot/arm-runner-action@v1
       with:
         commands: |
+
             sudo apt-get update -y
             sudo apt-get full-upgrade -y
             sudo apt-get install git-all -y
             sudo apt install swig python-dev python3-dev -y
             sudo apt install python-setuptools python3-setuptools -y
+
             sudo ./install-deps.sh
-            python3 -m pip install .
+
+            python3 -m pip install build --user
+            python3 -m build --sdist --wheel --outdir dist/ .
+
+        base_image: ${{ matrix.base_image }}
+        image_additional_mb: 10000
+        cpu: ${{ matrix.cpu }}
+        optimize_image: false
+        copy_artifact_path: dist/
+        copy_artifact_dest: .
+
+    - name: Publish distribution 📦 to PyPI
+      if: ${{ success() }}
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
