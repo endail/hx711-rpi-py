@@ -48,7 +48,8 @@ CFLAGS :=	-O2 \
 			-fstack-clash-protection \
 			-DNDEBUG=1 \
 			$(shell python3-config --includes) \
-			-Iextern/pybind11/include
+			-Iextern/pybind11/include \
+			-DUSE_PYBIND_SUBMODULE=1
 
 PYMODULE_FILENAME := HX711$(shell python3-config --extension-suffix)
 
