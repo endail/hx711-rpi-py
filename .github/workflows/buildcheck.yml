@@ -20,7 +20,7 @@ jobs:
 
             sudo apt-get update -y
             #apt-cache search linux-headers
-            sudo apt-get install libgpiod-dev -y
+            sudo apt-get install gpiod libgpiod-dev libgpiod2 -y
             #sudo apt-get install raspberrypi-kernel-headers
             #sudo apt-get full-upgrade -y
             #sudo apt-get install linux-headers-$(uname -r) -y
