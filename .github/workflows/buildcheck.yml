@@ -1,9 +1,11 @@
-name: Build Status
+name: Upload to PyPI
 on: ["push"]
 
 jobs:
+
   build:
-    name: buildcheck
+
+    name: Build on ${{ matrix.cpu }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -12,9 +14,10 @@ jobs:
 
     steps:
     
-    - uses: actions/checkout@v2
+    - name: Checkout repo
+      uses: actions/checkout@v2
     
-    - name: build rpi environment
+    - name: Build RPI environment
       uses: pguyot/arm-runner-action@v1
       with:
         commands: ./gh-actions-rpi-cmd.sh
@@ -30,3 +33,7 @@ jobs:
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
+
+    - name: Finish
+      if: ${{ always() }}
+      run: echo done

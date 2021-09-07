@@ -31,7 +31,7 @@ hx.setUnit(Mass.Unit.OZ)
 
 # constantly output weights using the median of 35 samples
 while True:
-    print(hx.weight(35))
+    print(hx.weight(35)) #eg. 1.08 oz
 ```
 
 ### AdvancedHX711 Example
@@ -48,34 +48,25 @@ hx = AdvancedHX711(2, 3, -370, -367471, Rate.HZ_80)
 # constantly output weights using the median of all samples
 # obtained within 1 second
 while True:
-    print(hx.weight(timedelta(seconds=1)))
+    print(hx.weight(timedelta(seconds=1))) #eg. 0.03 g
 ```
 
-## Build
+## Install
 
-```console
-# Step 1: clone this repository
-pi@raspberrypi:~ $ git clone https://github.com/endail/hx711-rpi-py
-pi@raspberrypi:~ $ cd hx711-rpi-py
+1. Install [libhx711](https://github.com/endail/hx711#build-and-install). To save some time you can use [this script](install-deps.sh).
 
-# Step 2: install liblgpio and libhx711 dependencies
-pi@raspberrypi:~/hx711-rpi-py $ sudo ./install-deps
-
-# Step 3: build (this may take some time)
-pi@raspberrypi:~/hx711-rpi-py $ make
-
-# bin directory will contain python module
-# eg. HX711.cpython-37m-arm-linux-gnueabihf.so
-# import this file into your Python script as in examples above
-```
+2. `pip3 install hx711-rpi-py`
 
 ## Calibrate
 
-There is a Python script in the `src` directory you can use to calibrate your load cell and obtain the reference unit and offset values referred to above. After you build the Python module as described in the section above, run the script and follow the prompts:
+There is a Python script in the `src` directory you can use to calibrate your load cell and obtain the reference unit and offset values referred to above. The simplest way to use it after installing `hx711-rpi-py` is as follows:
 
 ```console
-pi@raspberrypi:~/hx711-rpi-py $ python3 src/calibrate.py
+pi@raspberrypi:~ $ wget https://github.com/endail/hx711-rpi-py/blob/master/src/calibrate.py
+pi@raspberrypi:~ $ python3 calibrate.py
 ```
+
+When you no longer need it, simply `rm calibrate.py` to remove the calibration script.
 
 ## Documentation
 
