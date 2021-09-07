@@ -18,17 +18,11 @@ jobs:
       with:
         commands: |
 
-            sudo apt-get update -y
-            #apt-cache search linux-headers
-            sudo apt-get install raspberrypi-kernel-headers -y
-            sudo apt-get install gpiod libgpiod-dev libgpiod2 -y
-            #sudo apt-get full-upgrade -y
-            #sudo apt-get install linux-headers-$(uname -r) -y
-            sudo apt-get install python3-dev git-all python-setuptools python3-setuptools python3-pip python3-venv -y
-
-            sudo ./install-deps.sh
-
-            sudo apt-get autoremove -y
+            apt-get update -y
+            apt-get full-upgrade -y
+            apt-get install python3-dev git-all python-setuptools python3-setuptools python3-pip python3-venv -y
+            ./install-deps.sh
+            apt-get autoremove -y
 
             python3 -m pip install build --user
             python3 -m build --sdist --wheel --outdir dist/ .
