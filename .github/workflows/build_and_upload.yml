@@ -33,6 +33,8 @@ jobs:
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
+        skip_existing: true
+        verbose: true
 
     - name: Finish
       if: ${{ always() }}
