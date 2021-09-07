@@ -19,14 +19,15 @@ jobs:
         commands: |
 
             sudo apt-get update -y
-            sudo apt-get full-upgrade -y
-            sudo apt-get install git-all -y
-            sudo apt install swig python-dev python3-dev -y
-            sudo apt install python-setuptools python3-setuptools -y
+            #sudo apt-get full-upgrade -y
+            sudo apt-get install linux-headers-generic -y
+            sudo apt-get install swig python-dev python3-dev -y
+            sudo apt-get install git-all python-setuptools python3-setuptools python3-pip python3-venv -y
 
             sudo ./install-deps.sh
-            sudo apt-get install python3-pip -y
-            sudo apt-get install python3-venv -y
+
+            sudo apt-get autoremove -y
+
             python3 -m pip install build --user
             python3 -m build --sdist --wheel --outdir dist/ .
 
