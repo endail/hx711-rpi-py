@@ -19,7 +19,7 @@ jobs:
         commands: |
 
             sudo apt-get update -y
-            apt-cache search linux-headers -y
+            apt-cache search linux-headers
             sudo apt-get install raspberrypi-kernel-headers
             #sudo apt-get full-upgrade -y
             #sudo apt-get install linux-headers-$(uname -r) -y
