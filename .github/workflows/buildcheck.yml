@@ -8,7 +8,8 @@ jobs:
     strategy:
       matrix:
         base_image: ["raspios_lite:2021-05-07"]
-        cpu: [cortex-a8]
+        cpu: [arm1176, cortex-a8]
+
     steps:
     
     - uses: actions/checkout@v2
@@ -16,17 +17,7 @@ jobs:
     - name: build rpi environment
       uses: pguyot/arm-runner-action@v1
       with:
-        commands: |
-
-            apt-get update -y
-            apt-get full-upgrade -y
-            apt-get install python3-dev git-all python3-setuptools python3-pip python3-venv -y
-            ./install-deps.sh
-            apt-get autoremove -y
-
-            python3 -m pip install build --user
-            python3 -m build --sdist --wheel --outdir dist/ .
-
+        commands: ./gh-actions-rpi-cmd.sh
         base_image: ${{ matrix.base_image }}
         image_additional_mb: 10000
         cpu: ${{ matrix.cpu }}

@@ -1,8 +1,17 @@
 #!/usr/bin/env python3
 
+import os
 import pathlib
+import sys
 from pybind11.setup_helpers import Pybind11Extension
 from setuptools import setup, find_packages
+
+if os.system("ldconfig -p | grep -q libhx711") != 0:
+    print("=================================")
+    print("libhx711 is not installed")
+    print("Please see: https://github.com/endail/hx711-rpi-py/blob/master/install-deps.sh")
+    print("=================================")
+    sys.exit(1)
 
 here = pathlib.Path(__file__).parent.resolve()
 
