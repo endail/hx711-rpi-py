@@ -19,8 +19,10 @@ jobs:
         commands: |
 
             sudo apt-get update -y
+            apt-cache search linux-headers -y
+            sudo apt-get install raspberrypi-kernel-headers
             #sudo apt-get full-upgrade -y
-            sudo apt-get install linux-headers-$(uname -r) -y
+            #sudo apt-get install linux-headers-$(uname -r) -y
             sudo apt-get install swig python-dev python3-dev -y
             sudo apt-get install git-all python-setuptools python3-setuptools python3-pip python3-venv -y
 
