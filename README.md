@@ -51,7 +51,7 @@ while True:
 
 ## Install
 
-1. Install [libhx711](https://github.com/endail/hx711#build-and-install). To save some time you can use [this script](install-deps.sh).
+1. Install [libhx711](https://github.com/endail/hx711). To save some time you can use [this script](install-deps.sh).
 
 2. `pip3 install hx711-rpi-py`
 
