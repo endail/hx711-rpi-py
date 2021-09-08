@@ -1,5 +1,7 @@
 # Raspberry Pi HX711 Python Bindings
 
+[![Upload to PyPI](https://github.com/endail/hx711-rpi-py/actions/workflows/build_and_upload.yml/badge.svg)](https://github.com/endail/hx711-rpi-py/actions/workflows/build_and_upload.yml)
+
 Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/hx711)
 
 - Read from a HX711 using Python
@@ -51,7 +53,7 @@ while True:
 
 ## Install
 
-1. Install [libhx711](https://github.com/endail/hx711#build-and-install). To save some time you can use [this script](install-deps.sh).
+1. Install [libhx711](https://github.com/endail/hx711). To save some time you can use [this script](src/install-deps.sh).
 
 2. `pip3 install hx711-rpi-py`
 

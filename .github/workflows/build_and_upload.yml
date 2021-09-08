@@ -1,5 +1,10 @@
 name: Upload to PyPI
-on: ["push"]
+on:
+  push:
+    paths:
+      - "src/**"
+      - "setup.py"
+      - "pyproject.toml"
 
 jobs:
 
@@ -20,7 +25,7 @@ jobs:
     - name: Build RPI environment
       uses: pguyot/arm-runner-action@v1
       with:
-        commands: ./gh-actions-rpi-cmd.sh
+        commands: src/gh-actions-rpi-cmd.sh
         base_image: ${{ matrix.base_image }}
         image_additional_mb: 10000
         cpu: ${{ matrix.cpu }}
@@ -35,7 +40,3 @@ jobs:
         password: ${{ secrets.PYPI_API_TOKEN }}
         skip_existing: true
         verbose: true
-
-    - name: Finish
-      if: ${{ always() }}
-      run: echo done
