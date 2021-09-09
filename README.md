@@ -4,9 +4,9 @@
 
 Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/hx711)
 
-- Read from a HX711 using Python
 - Use with Raspberry Pi
-- Developed and tested with a Raspberry Pi Zero W (should work on other Pis)
+- Read from a HX711 using Python
+- Code tested inside [virtual Raspberry Pi Zero/3/4 environments](.github/workflows/build_and_upload.yml) on GitHub and builds automatically uploaded to PyPI
 
 ## Sample Output
 
