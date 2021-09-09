@@ -20,7 +20,8 @@ jobs:
           pip3 install --upgrade bump2version
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          bump2version --config-file .bumpversion.cfg minor setup.py
+          bump2version --config-file .bumpversion.cfg minor
+          git push
 
   build:
 
