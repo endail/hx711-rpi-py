@@ -18,11 +18,11 @@ jobs:
           pip3 install --upgrade bump2version
           bump2version --current-version minor setup.py
 
-
   build:
 
     name: Build on ${{ matrix.cpu }}
     runs-on: ubuntu-latest
+    needs: [bumpversion]
     strategy:
       matrix:
         base_image: ["raspios_lite:2021-05-07"]
