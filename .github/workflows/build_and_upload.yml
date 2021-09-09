@@ -14,9 +14,11 @@ jobs:
     name: auto increment version
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
       - run: |
           pip3 install --upgrade bump2version
-          bump2version minor
+          bump2version --config-file .bumpversion.cfg minor
 
   build:
 
