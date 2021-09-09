@@ -39,6 +39,8 @@ jobs:
     
     - name: Checkout repo
       uses: actions/checkout@v2
+      with:
+        ref: "master"
     
     - name: Build RPI environment
       uses: pguyot/arm-runner-action@v1
