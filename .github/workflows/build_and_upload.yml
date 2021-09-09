@@ -5,6 +5,8 @@ on:
       - "src/**"
       - "setup.py"
       - "pyproject.toml"
+  workflow_dispatch:
+  repository_dispatch:
 
 jobs:
 
