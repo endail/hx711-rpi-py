@@ -14,9 +14,13 @@ jobs:
     name: auto increment version
     runs-on: ubuntu-latest
     steps:
-      - run: bump2version --current-version minor setup.py
+      - run: |
+          pip3 install --upgrade bump2version
+          bump2version --current-version minor setup.py
+
 
   build:
+
     name: Build on ${{ matrix.cpu }}
     runs-on: ubuntu-latest
     strategy:
