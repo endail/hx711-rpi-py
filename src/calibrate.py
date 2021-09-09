@@ -2,8 +2,6 @@ import os
 import sys
 from datetime import timedelta
 
-sys.path.append("bin")
-
 from HX711 import *
 
 if len(sys.argv) != 3:
