@@ -11,7 +11,7 @@ if ! $(ldconfig -p | grep -q liblgpio); then
     unzip lg.zip
     cd lg
     make
-    sudo make install
+    make install
     cd ..
 else
     echo "liblgpio already installed"
@@ -21,7 +21,8 @@ fi
 if ! $(ldconfig -p | grep -q libhx711); then
     git clone https://github.com/endail/hx711
     cd hx711
-    make && make install
+    make
+    make install
     cd ..
 else
     echo "libhx711 already installed"
