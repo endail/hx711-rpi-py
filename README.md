@@ -7,6 +7,7 @@ Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/h
 - Use with Raspberry Pi
 - Read from a HX711 using Python
 - Code tested inside [virtual Raspberry Pi Zero/3/4 environments](.github/workflows/build_and_upload.yml) on GitHub and builds automatically uploaded to PyPI
+- This repo automatically rebuilds when the C++ library is updated
 
 ## Sample Output
 
