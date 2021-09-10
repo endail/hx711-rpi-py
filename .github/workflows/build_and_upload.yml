@@ -54,7 +54,7 @@ jobs:
         copy_artifact_dest: .
 
     - name: Publish distribution 📦 to PyPI
-      if: ${{ success() }} }}
+      if: ${{ success() }}
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
