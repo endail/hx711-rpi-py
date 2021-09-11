@@ -233,6 +233,7 @@ PYBIND11_MODULE(HX711, m) {
             obj.cast<HX711::HX711*>()->close(); })
 
         .def("begin", &HX711::HX711::begin)
+        .def("close", &HX711::HX711::close)
 
         .def("setStrictTiming", &HX711::HX711::setStrictTiming, "strict"_a)
         .def("isStrictTiming", &HX711::HX711::isStrictTiming)
