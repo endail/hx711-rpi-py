@@ -1,3 +1,4 @@
+
 name: Upload to PyPI
 on:
   push:
@@ -10,9 +11,11 @@ on:
 
 jobs:
 
+  # only increment on master
   bumpversion:
     name: auto increment version
     runs-on: ubuntu-latest
+    if: ${{ github.ref == "refs/heads/master" }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -53,8 +56,9 @@ jobs:
         copy_artifact_path: dist/
         copy_artifact_dest: .
 
+    # only publish if master branch
     - name: Publish distribution 📦 to PyPI
-      if: ${{ success() }}
+      if: ${{ success() && github.ref == "refs/heads/master" }}
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
