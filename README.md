@@ -56,7 +56,7 @@ while True:
 
 1. Install [libhx711](https://github.com/endail/hx711). Optionally, you can use [this script](src/install-deps.sh).
 
-2. `pip3 install hx711-rpi-py`
+2. `pip3 install --upgrade hx711-rpi-py`
 
 ## Calibrate
 
