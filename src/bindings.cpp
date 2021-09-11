@@ -227,8 +227,7 @@ PYBIND11_MODULE(HX711, m) {
         .def(py::init<const int, const int, const Rate>(),
             "dataPin"_a, "clockPin"_a, "rate"_a = Rate::HZ_10)
 
-        .def("__enter__", [](const py::object& hx) {
-            return hx; })
+        .def("__enter__", [](const py::object& hx) { return hx; })
 
         .def("__exit__", [](py::object& obj, py::args args) { 
             obj.cast<HX711::HX711*>()->close(); })
