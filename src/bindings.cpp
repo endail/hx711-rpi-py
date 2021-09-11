@@ -231,7 +231,7 @@ PYBIND11_MODULE(HX711, m) {
             [](const py::object& hx) { return hx; })
 
         .def("__exit__",
-            [](const py::object& hx) { hx.~HX711(); })
+            [](const py::object& hx) { dynamic_cast<HX711::HX711>(hx).~HX711(); })
 
         .def("begin", &HX711::HX711::begin)
 
