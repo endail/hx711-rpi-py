@@ -132,7 +132,12 @@ PYBIND11_MODULE(HX711, m) {
         .def("__float__",
             static_cast<double (Mass::*)() const>(&Mass::operator double))
 
-        .def("getValue", &Mass::getValue)
+        .def("getValue",
+            static_cast<double(Mass::*)() const>(&Mass::getValue))
+
+        .def("getValue",
+            static_cast<double(Mass::*)(const Mass::Unit) const>(&Mass::getValue),
+            "u"_a)
 
         .def("getUnit", &Mass::getUnit)
         .def("setUnit", &Mass::setUnit, "u"_a)
