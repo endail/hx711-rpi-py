@@ -230,7 +230,8 @@ PYBIND11_MODULE(HX711, m) {
         .def("__enter__",
             [](const py::object& hx) { return hx; })
 
-        .def("__exit__", &HX711::HX711::~HX711);
+        .def("__exit__",
+            static_cast<void>(HX711::HX711::*)()>(&HX711::HX711::~HX711)
 
         .def("begin", &HX711::HX711::begin)
 
