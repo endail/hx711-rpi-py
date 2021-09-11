@@ -54,7 +54,7 @@ with AdvancedHX711(2, 3, -370, -367471, Rate.HZ_80) as hx:
 
 ## Install
 
-1. Install [libhx711](https://github.com/endail/hx711). Optionally, you can use [this script](src/install-deps.sh).
+1. Install [libhx711](https://github.com/endail/hx711)
 
 2. `pip3 install --upgrade hx711-rpi-py`
 
@@ -66,8 +66,6 @@ There is a Python script in the `src` directory you can use to calibrate your lo
 pi@raspberrypi:~ $ wget https://github.com/endail/hx711-rpi-py/blob/master/src/calibrate.py
 pi@raspberrypi:~ $ python3 calibrate.py
 ```
-
-When you no longer need it, simply `rm calibrate.py` to remove the calibration script.
 
 ## Documentation
 
