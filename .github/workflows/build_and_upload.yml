@@ -15,7 +15,7 @@ jobs:
   bumpversion:
     name: auto increment version
     runs-on: ubuntu-latest
-    if: ${{ github.ref == "refs/heads/master" }}
+    if: github.ref == "refs/heads/master"
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
@@ -58,7 +58,7 @@ jobs:
 
     # only publish if master branch
     - name: Publish distribution 📦 to PyPI
-      if: ${{ success() && github.ref == "refs/heads/master" }}
+      if: success() && github.ref == "refs/heads/master"
       uses: pypa/gh-action-pypi-publish@master
       with:
         password: ${{ secrets.PYPI_API_TOKEN }}
