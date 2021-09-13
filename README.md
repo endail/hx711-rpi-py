@@ -27,12 +27,12 @@ from HX711 import *
 # -367471 as the offset
 with SimpleHX711(2, 3, -370, -367471) as hx:
 
-    # set the scale to output weights in ounces
-    hx.setUnit(Mass.Unit.OZ)
+  # set the scale to output weights in ounces
+  hx.setUnit(Mass.Unit.OZ)
 
-    # constantly output weights using the median of 35 samples
-    while True:
-        print(hx.weight(35)) #eg. 1.08 oz
+  # constantly output weights using the median of 35 samples
+  while True:
+    print(hx.weight(35)) #eg. 1.08 oz
 ```
 
 ### AdvancedHX711 Example
@@ -46,10 +46,10 @@ from datetime import timedelta
 # as the offset, and indicate that the chip is operating at 80Hz
 with AdvancedHX711(2, 3, -370, -367471, Rate.HZ_80) as hx:
 
-    # constantly output weights using the median of all samples
-    # obtained within 1 second
-    while True:
-        print(hx.weight(timedelta(seconds=1))) #eg. 0.03 g
+  # constantly output weights using the median of all samples
+  # obtained within 1 second
+  while True:
+    print(hx.weight(timedelta(seconds=1))) #eg. 0.03 g
 ```
 
 ## Install
