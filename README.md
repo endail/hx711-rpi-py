@@ -28,18 +28,12 @@ with SimpleHX711(2, 3, -370, -367471) as hx:
   # set the scale to output weights in ounces
   hx.setUnit(Mass.Unit.OZ)
 
-<<<<<<< HEAD
     # zero the scale
     hx.zero()
 
     # constantly output weights using the median of 35 samples
     while True:
         print(hx.weight(35)) #eg. 1.08 oz
-=======
-  # constantly output weights using the median of 35 samples
-  while True:
-    print(hx.weight(35)) #eg. 1.08 oz
->>>>>>> b119c828c604d64e70fe69c758ab81849f08071a
 ```
 
 ### Alternative Syntax (w/out `with`)
