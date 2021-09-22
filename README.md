@@ -1,6 +1,6 @@
 # Raspberry Pi HX711 Python Bindings
 
-[![Upload to PyPI](https://github.com/endail/hx711-rpi-py/actions/workflows/build_and_upload.yml/badge.svg)](https://github.com/endail/hx711-rpi-py/actions/workflows/build_and_upload.yml)
+[![Upload to PyPI](https://github.com/endail/hx711-rpi-py/actions/workflows/build_and_upload.yml/badge.svg)](https://github.com/endail/hx711-rpi-py/actions/workflows/build_and_upload.yml) [![Downloads](https://pepy.tech/badge/hx711-rpi-py)](https://pepy.tech/project/hx711-rpi-py)
 
 Python bindings for [Raspberry Pi HX711 C++ Library](https://github.com/endail/hx711)
 
@@ -17,8 +17,6 @@ The .gif above illustrates the output of a [simple Python script](src/test.py) o
 
 ## Examples
 
-### SimpleHX711 Example
-
 ```python
 from HX711 import *
 
@@ -30,26 +28,96 @@ with SimpleHX711(2, 3, -370, -367471) as hx:
     # set the scale to output weights in ounces
     hx.setUnit(Mass.Unit.OZ)
 
+    # zero the scale
+    hx.zero()
+
     # constantly output weights using the median of 35 samples
     while True:
         print(hx.weight(35)) #eg. 1.08 oz
 ```
 
-### AdvancedHX711 Example
+### Alternative Syntax (w/out `with`)
 
 ```python
 from HX711 import *
 from datetime import timedelta
 
-# create an AdvancedHX711 object using GPIO pin 2 as the data pin,
-# GPIO pin 3 as the clock pin, -370 as the reference unit, -367471
-# as the offset, and indicate that the chip is operating at 80Hz
-with AdvancedHX711(2, 3, -370, -367471, Rate.HZ_80) as hx:
+hx = SimpleHX711(2, 3, -370, -367471)
+hx.setUnit(Mass.Unit.OZ)
+while True:
+    print(hx.weight(35))
+```
 
-    # constantly output weights using the median of all samples
-    # obtained within 1 second
+Keep in mind that calling `.weight()` will return a `Mass` object, but you can do the following:
+
+```python
+# set the scale to output weights in ounces
+hx.setUnit(Mass.Unit.OZ)
+
+# obtain a median reading from 35 samples as a Mass object in ounces
+m = hx.weight(35)
+
+# number in ounces
+num = float(m) # eg. 1.08
+
+# string representation of the Mass
+s = str(m) # eg. 1.08 oz
+
+# print the Mass object
+print(m) # eg. 1.08 oz
+
+# change the unit to grams
+m.setUnit(Mass.Unit.G)
+grams_as_str = str(m) # eg. 30.62 g
+
+# or obtain a new Mass object
+m2 = m.convertTo(Mass.Unit.KG)
+kgs_as_str = str(m2) # eg. 0.031 kg
+```
+
+The list of different `Mass.Unit`s can be viewed [here](https://github.com/endail/hx711#mass).
+
+### Time-Based Sampling
+
+You can use [`datetime.timedelta`](https://docs.python.org/3/library/datetime.html#timedelta-objects) to obtain as many samples as possible within the time period.
+
+```python
+from HX711 import *
+from datetime import timedelta
+
+with SimpleHX711(2, 3, -370, -367471) as hx:
     while True:
-        print(hx.weight(timedelta(seconds=1))) #eg. 0.03 g
+        # eg. obtain as many samples as possible within 1 second
+        print(hx.weight(timedelta(seconds=1)))
+```
+
+### Options
+
+`.weight()`, `.zero()`, and `.read()` can all take an `Options` parameter. You can use this to fine tune how you want the scale to behave.
+
+```python
+
+# zero the scale by using the average value of all samples obtained within 1 second
+hx.zero(Options(
+    stratType=StrategyType.Time,
+    readType=ReadType.Average,
+    timeout=timedelta(seconds=1)))
+
+# obtain a raw value from the scale using the median of 100 samples
+num = hx.read(Options(
+    stratType=StrategyType.Samples,
+    readType=ReadType.Median,
+    samples=100))
+
+# obtain a Mass object using the median of three samples
+# all four statements below are equivalent
+m = hx.weight()
+m = hx.weight(3)
+m = hx.weight(Options())
+m = hx.weight(Options(
+    stratType=StrategyType.Samples,
+    readType=ReadType.Median
+    samples=3))
 ```
 
 ## Install
