@@ -25,8 +25,8 @@ from HX711 import *
 # -367471 as the offset
 with SimpleHX711(2, 3, -370, -367471) as hx:
 
-  # set the scale to output weights in ounces
-  hx.setUnit(Mass.Unit.OZ)
+    # set the scale to output weights in ounces
+    hx.setUnit(Mass.Unit.OZ)
 
     # zero the scale
     hx.zero()
@@ -44,6 +44,7 @@ from datetime import timedelta
 
 hx = SimpleHX711(2, 3, -370, -367471)
 hx.setUnit(Mass.Unit.OZ)
+hx.zero()
 while True:
     print(hx.weight(35))
 ```
