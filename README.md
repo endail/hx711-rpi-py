@@ -40,7 +40,6 @@ with SimpleHX711(2, 3, -370, -367471) as hx:
 
 ```python
 from HX711 import *
-from datetime import timedelta
 
 hx = SimpleHX711(2, 3, -370, -367471)
 hx.setUnit(Mass.Unit.OZ)
