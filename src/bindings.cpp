@@ -232,8 +232,8 @@ PYBIND11_MODULE(HX711, m) {
         .def("__exit__", [](py::object& obj, py::args args) { 
             obj.cast<HX711::HX711*>()->close(); })
 
-        .def("begin", &HX711::HX711::begin)
-        .def("close", &HX711::HX711::close)
+        .def("connect", &HX711::HX711::connect)
+        .def("disconnect", &HX711::HX711::disconnect)
 
         .def("setStrictTiming", &HX711::HX711::setStrictTiming, "strict"_a)
         .def("isStrictTiming", &HX711::HX711::isStrictTiming)
