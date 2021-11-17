@@ -10,7 +10,7 @@ here = pathlib.Path(__file__).parent.resolve()
 
 setup(
     name="hx711-rpi-py",
-    version="1.43.0",
+    version="1.44.0",
     license="MIT",
     description="Python bindings for Raspberry Pi HX711 C++ Library",
     long_description=(here / "README.md").read_text(encoding="utf-8"),
