@@ -359,7 +359,7 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Utility
      */
-    py::class_<Utiliy>(m, "Utility")
+    py::class_<Utility>(m, "Utility")
         .def("getVersion", &Utility::getVersion)
     ;
 
