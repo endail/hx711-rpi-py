@@ -355,4 +355,12 @@ PYBIND11_MODULE(HX711, m) {
             "rate"_a = Rate::HZ_10)
     ;
 
+
+    /**
+     * HX711.Utility
+     */
+    py::class_<Utiliy>(m, "Utility")
+        .def("getVersion", &Utility::getVersion)
+    ;
+
 }

@@ -25,15 +25,15 @@ from HX711 import *
 # -367471 as the offset
 with SimpleHX711(2, 3, -370, -367471) as hx:
 
-    # set the scale to output weights in ounces
-    hx.setUnit(Mass.Unit.OZ)
+  # set the scale to output weights in ounces
+  hx.setUnit(Mass.Unit.OZ)
 
-    # zero the scale
-    hx.zero()
+  # zero the scale
+  hx.zero()
 
-    # constantly output weights using the median of 35 samples
-    while True:
-        print(hx.weight(35)) #eg. 1.08 oz
+  # constantly output weights using the median of 35 samples
+  while True:
+    print(hx.weight(35)) #eg. 1.08 oz
 ```
 
 ### Alternative Syntax (w/out `with`)
@@ -45,7 +45,7 @@ hx = SimpleHX711(2, 3, -370, -367471)
 hx.setUnit(Mass.Unit.OZ)
 hx.zero()
 while True:
-    print(hx.weight(35))
+  print(hx.weight(35))
 ```
 
 Keep in mind that calling `.weight()` will return a `Mass` object, but you can do the following:
@@ -86,9 +86,9 @@ from HX711 import *
 from datetime import timedelta
 
 with SimpleHX711(2, 3, -370, -367471) as hx:
-    while True:
-        # eg. obtain as many samples as possible within 1 second
-        print(hx.weight(timedelta(seconds=1)))
+  while True:
+    # eg. obtain as many samples as possible within 1 second
+    print(hx.weight(timedelta(seconds=1)))
 ```
 
 ### Options
@@ -99,15 +99,15 @@ with SimpleHX711(2, 3, -370, -367471) as hx:
 
 # zero the scale by using the average value of all samples obtained within 1 second
 hx.zero(Options(
-    stratType=StrategyType.Time,
-    readType=ReadType.Average,
-    timeout=timedelta(seconds=1)))
+  stratType=StrategyType.Time,
+  readType=ReadType.Average,
+  timeout=timedelta(seconds=1)))
 
 # obtain a raw value from the scale using the median of 100 samples
 num = hx.read(Options(
-    stratType=StrategyType.Samples,
-    readType=ReadType.Median,
-    samples=100))
+  stratType=StrategyType.Samples,
+  readType=ReadType.Median,
+  samples=100))
 
 # obtain a Mass object using the median of three samples
 # all four statements below are equivalent
@@ -115,9 +115,9 @@ m = hx.weight()
 m = hx.weight(3)
 m = hx.weight(Options())
 m = hx.weight(Options(
-    stratType=StrategyType.Samples,
-    readType=ReadType.Median
-    samples=3))
+  stratType=StrategyType.Samples,
+  readType=ReadType.Median
+  samples=3))
 ```
 
 ## Install
@@ -132,9 +132,11 @@ There is a Python script in the `src` directory you can use to calibrate your lo
 
 ```console
 pi@raspberrypi:~ $ wget https://github.com/endail/hx711-rpi-py/blob/master/src/calibrate.py
-pi@raspberrypi:~ $ python3 calibrate.py
+pi@raspberrypi:~ $ python3 calibrate.py [data pin] [clock pin]
 ```
+
+Substitute `[data pin]` and `[clock pin]` with the [GPIO pin numbers](https://pinout.xyz/) which are connected to the HX711's data pin and clock pin, respectively.
 
 ## Documentation
 
-As the Python code relies upon the [underlying C++ library](https://github.com/endail/hx711#documentation), the documentation is identical. However, not all of the code is exposed to Python. An example is the [Utility class](https://github.com/endail/hx711/blob/master/include/Utility.h), which is only meant for use within the C++ library. You can check precisely which functionality is accessible through Python in the [bindings.cpp file](src/bindings.cpp).
+As the Python code relies upon the [underlying C++ library](https://github.com/endail/hx711#documentation), the documentation is identical. However, not all of the code is exposed to Python. You can check precisely which functionality is accessible through Python in the [bindings.cpp file](src/bindings.cpp).
