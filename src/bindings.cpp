@@ -181,13 +181,6 @@ PYBIND11_MODULE(HX711, m) {
     /**
      * HX711.Value
      */
-
-    /**
-     * std::int32_t is given instead of Value::_INTERNAL_TYPE
-     * which is protected in C++ HX711 library
-     */
-    typedef std::int32_t INTERNAL_VALUE_TYPE;
-
     py::class_<Value>(m, "Value")
 
         .def_property_readonly_static(
@@ -199,10 +192,13 @@ PYBIND11_MODULE(HX711, m) {
             [](const py::object&) { return Value::SATURATION_MAX; })
 
         .def("isSaturated", &Value::isSaturated)
+        .def("isMinSaturated", &Value::isMinSaturated)
+        .def("isMaxSaturated", &Value::isMaxSaturated)
+
         .def("isValid", &Value::isValid)
 
         .def("__int__",
-            static_cast<INTERNAL_VALUE_TYPE(Value::*)() const>(&Value::operator INTERNAL_VALUE_TYPE))
+            static_cast<val_t(Value::*)() const>(&Value::operator val_t))
 
         .def("__str__",
             [](const Value& v) { return std::to_string(v); })
@@ -210,13 +206,12 @@ PYBIND11_MODULE(HX711, m) {
         .def("__repr__",
             [](const Value& v) { return std::to_string(v); })
 
-        .def(py::init<const INTERNAL_VALUE_TYPE>(), "v"_a)
+        .def(py::init<const val_t>(), "v"_a)
         .def(py::init<>())
 
     ;
 
-    //allow for casts to the internal type
-    py::implicitly_convertible<INTERNAL_VALUE_TYPE, Value>();
+    py::implicitly_convertible<val_t, Value>();
 
 
     /**
