@@ -99,15 +99,13 @@ with SimpleHX711(2, 3, -370, -367471) as hx:
 
 # zero the scale by using the average value of all samples obtained within 1 second
 hx.zero(Options(
-  stratType=StrategyType.Time,
-  readType=ReadType.Average,
-  timeout=timedelta(seconds=1)))
+  timedelta(seconds=1),
+  ReadType.Average))
 
 # obtain a raw value from the scale using the median of 100 samples
 num = hx.read(Options(
-  stratType=StrategyType.Samples,
-  readType=ReadType.Median,
-  samples=100))
+  100,
+  ReadType.Median))
 
 # obtain a Mass object using the median of three samples
 # all four statements below are equivalent
@@ -115,9 +113,14 @@ m = hx.weight()
 m = hx.weight(3)
 m = hx.weight(Options())
 m = hx.weight(Options(
-  stratType=StrategyType.Samples,
-  readType=ReadType.Median
-  samples=3))
+  3,
+  ReadType.Median))
+
+# Options can also be created separately
+opts = Options()
+opts.timeout = timedelta(seconds=5)
+opts.stratType = StrategyType.Time
+m = hx.weight(opts)
 ```
 
 ## Install

@@ -272,8 +272,18 @@ PYBIND11_MODULE(HX711, m) {
         .def_readwrite("timeout", &Options::timeout)
 
         .def(py::init<>())
-        .def(py::init<const std::size_t>(), "s"_a)
-        .def(py::init<const std::chrono::nanoseconds>(), "t"_a)
+        
+        .def(py::init<
+            const std::size_t,
+            const ReadType>(),
+            "s"_a,
+            "rt"_a = ReadType::Median)
+        
+        .def(py::init<
+            const std::chrono::nanoseconds,
+            const ReadType>(),
+            "t"_a,
+            "rt"_a = ReadType::Median)
 
     ;
 
