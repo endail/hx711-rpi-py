@@ -1,4 +1,3 @@
-
 name: Upload to PyPI
 on:
   push:
@@ -17,8 +16,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
+
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
       - run: |
           pip3 install --upgrade bump2version
           git config --global user.name "github-actions[bot]"
@@ -35,18 +38,18 @@ jobs:
     needs: [bumpversion]
     strategy:
       matrix:
-        base_image: ["raspios_lite:2021-05-07"]
+        base_image: ["raspios_lite:latest"]
         cpu: [arm1176, cortex-a8]
 
     steps:
     
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
-        ref: "master"
+        ref: ${{ github.ref }}
     
     - name: Build RPI environment
-      uses: pguyot/arm-runner-action@v1
+      uses: pguyot/arm-runner-action@v2
       with:
         commands: src/gh-actions-rpi-cmd.sh
         base_image: ${{ matrix.base_image }}
