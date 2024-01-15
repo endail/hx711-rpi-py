@@ -134,7 +134,7 @@ m = hx.weight(opts)
 There is a Python script in the `src` directory you can use to calibrate your load cell and obtain the reference unit and offset values referred to above. The simplest way to use it after installing `hx711-rpi-py` is as follows:
 
 ```console
-pi@raspberrypi:~ $ wget https://github.com/endail/hx711-rpi-py/blob/master/src/calibrate.py
+pi@raspberrypi:~ $ wget https://raw.githubusercontent.com/endail/hx711-rpi-py/master/src/calibrate.py
 pi@raspberrypi:~ $ python3 calibrate.py [data pin] [clock pin]
 ```
 
