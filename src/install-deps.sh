@@ -5,6 +5,8 @@ if [ `id -u` -ne 0 ]; then
     exit 1;
 fi
 
+ldconfig
+
 # build and install liblgpio if not found
 if ! $(ldconfig -p | grep -q liblgpio); then
     wget https://abyz.me.uk/lg/lg.zip
@@ -12,6 +14,7 @@ if ! $(ldconfig -p | grep -q liblgpio); then
     cd lg
     make
     make install
+    ldconfig
     cd ..
 else
     echo "liblgpio already installed"
@@ -23,6 +26,7 @@ if ! $(ldconfig -p | grep -q libhx711); then
     cd hx711
     make
     make install
+    ldconfig
     cd ..
 else
     echo "libhx711 already installed"
