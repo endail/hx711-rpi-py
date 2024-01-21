@@ -1,12 +1,13 @@
 
-# update os
-apt-get update -y && apt-get full-upgrade -y
+# note that this is running on a virtual rpi
+export VIRTUAL_PI=1;
+apt-get update -y && apt-get full-upgrade -y;
 
 # install needed packages
-apt-get install git-all python3-dev python3-setuptools python3-pip python3-venv -y
+apt-get install git-all python3-dev python3-setuptools python3-pip python3-venv -y;
 
 # install liblgpio and libhx711
-src/install-deps.sh
+src/install-deps.sh;
 
 # build and package
 python3 -m pip install build --user
